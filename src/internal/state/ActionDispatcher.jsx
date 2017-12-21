@@ -15,14 +15,16 @@
 // (a) prevent actions from firing other actions, and (b) prevent state updates outside of an action.
 var currentActions = [];
 
+const ACTION_PREFIX = '@';
+
 export default class ActionDispatcher {
 
     /**
         Built-in action types
     **/
 
-    static IMPLICIT_ACTION_PREFIX = '@';
-    static INIT_ACTION = ActionDispatcher.IMPLICIT_ACTION_PREFIX + '@INIT';
+    static IMPLICIT_ACTION_PREFIX = ACTION_PREFIX;
+    static INIT_ACTION = ACTION_PREFIX + '@INIT';
 
 
     /**

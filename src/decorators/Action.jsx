@@ -11,7 +11,7 @@
  *
  */
 
-import Store from '../Store';
+import Store from '../internal/state/Store';
 import DecoratorUtils from '../internal/utils/DecoratorUtils';
 
 export default DecoratorUtils.makePropertyDecorator((target, property, descriptor, options = {}) => {

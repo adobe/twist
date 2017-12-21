@@ -14,15 +14,15 @@
 /* eslint no-console: "off" */
 
 /**
-    @private
-
-    Utilities for logging to the console.
-    This allows us to keep all the console logs in one place, so we
-    don't need to disable the no-console rule in other files.
-
-    NEVER use this for debugging, since we want the linter to prevent
-    us from checking in debug console.log statements.
-**/
+ * Utilities for logging to the console.
+ * This allows us to keep all the console logs in one place, so we
+ * don't need to disable the no-console rule in other files.
+ *
+ * NEVER use this for debugging, since we want the linter to prevent
+ * us from checking in debug console.log statements.
+ *
+ * @private
+ */
 export default class Logger {
 
     static log() {

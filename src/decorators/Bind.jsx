@@ -11,7 +11,7 @@
  *
  */
 
-import DecoratorUtils from './DecoratorUtils';
+import DecoratorUtils from '../internal/utils/DecoratorUtils';
 
 export default function Bind(target, property, descriptor) {
     const fn = DecoratorUtils.getInitialValue(descriptor);

@@ -14,9 +14,8 @@
 import ActionDispatcher from './ActionDispatcher';
 import StoreSerializer from './StoreSerializer';
 import Binder from '../../Binder';
+import ObjectUtils from '../utils/ObjectUtils';
 import { shallowClone } from '../../third_party/clone';
-import { deepEqual } from '../utils/ObjectUtils';
-
 
 function fromJSONProperty(property, name, jsonName, obj, json) {
     var jsonValue = json && json[jsonName];
@@ -116,7 +115,7 @@ export default class JSONProperties {
             var property = properties[i];
             Binder.active && Binder.recordEvent(obj, property.name);
             var value = property.toJSON.call(obj, obj[property.key], includeDefaults);
-            if (includeDefaults || !deepEqual(value, property.defaultValue)) {
+            if (includeDefaults || !ObjectUtils.deepEqual(value, property.defaultValue)) {
                 json[this.getJsonName(property.name)] = value;
             }
         }

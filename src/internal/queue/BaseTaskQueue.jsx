@@ -39,7 +39,7 @@ export default class TaskQueue {
         // 3. The callback has been added, executed in this queue run, but we are still executing the queue.
         // 4. The callback has been added, executed before, but we are not executing the queue.
 
-        var id = ObjectId(callback);
+        var id = ObjectId.get(callback);
 
         // Make sure our priority is a number.
         priority = Number(priority) || 0;
@@ -153,7 +153,7 @@ export default class TaskQueue {
     }
 
     remove(callback) {
-        var id = ObjectId(callback);
+        var id = ObjectId.get(callback);
         var item = this.itemMap[id];
         if (item) {
             // Rever the item back to canceled state.

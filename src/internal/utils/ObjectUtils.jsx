@@ -36,58 +36,64 @@ function isArrayOrTypedArray(a, b) {
 }
 
 /**
- * Return true if `a` and `b` are deeply equivalent.
- * Deeply understands Object, Array, TypedArray, ArrayBuffer, Date, Map, Set, and RegExp types.
- * Other values are compared using strict equality (`===`).
+ * Utilities for operations on objects
  */
-export function deepEqual(a, b) {
-    // In simple cases, we can compare values without traversal.
-    if (a === b) {
-        return true;
-    }
-    if (typeof a !== typeof b) {
-        return false;
-    }
-    if (a instanceof Date && b instanceof Date) {
-        return a.getTime() === b.getTime();
-    }
-    if (a instanceof RegExp && b instanceof RegExp) {
-        return a.toString() === b.toString();
-    }
-    if (a instanceof ArrayBuffer && b instanceof ArrayBuffer) {
-        return deepEqual(new Uint8Array(a), new Uint8Array(b));
-    }
-    if ((a instanceof Map && b instanceof Map) || (a instanceof Set && b instanceof Set)) {
-        return deepEqual(Array.from(a), Array.from(b));
-    }
+export default class ObjectUtils {
 
-    if (isArrayOrTypedArray(a, b)) {
-        const isTypedArray = !Array.isArray(a);
-        if (a.length !== b.length) {
+    /**
+     * Return true if `a` and `b` are deeply equivalent.
+     * Deeply understands Object, Array, TypedArray, ArrayBuffer, Date, Map, Set, and RegExp types.
+     * Other values are compared using strict equality (`===`).
+     */
+    static deepEqual(a, b) {
+        // In simple cases, we can compare values without traversal.
+        if (a === b) {
+            return true;
+        }
+        if (typeof a !== typeof b) {
             return false;
         }
-        for (let i = 0, len = a.length; i < len; i++) {
-            if (isTypedArray) {
-                if (a[i] !== b[i]) {
-                    return false;
-                }
-            }
-            else {
-                if (!deepEqual(a[i], b[i])) {
-                    return false;
-                }
-            }
+        if (a instanceof Date && b instanceof Date) {
+            return a.getTime() === b.getTime();
         }
-        return true;
-    }
+        if (a instanceof RegExp && b instanceof RegExp) {
+            return a.toString() === b.toString();
+        }
+        if (a instanceof ArrayBuffer && b instanceof ArrayBuffer) {
+            return this.deepEqual(new Uint8Array(a), new Uint8Array(b));
+        }
+        if ((a instanceof Map && b instanceof Map) || (a instanceof Set && b instanceof Set)) {
+            return this.deepEqual(Array.from(a), Array.from(b));
+        }
 
-    if (typeof a === 'object' && typeof b === 'object') {
-        let aKeys = Object.keys(a); // Only traverse own (not inherited) properties.
-        let bKeys = Object.keys(b);
-        aKeys.sort();
-        bKeys.sort();
-        return deepEqual(aKeys, bKeys) && aKeys.every(k => deepEqual(a[k], b[k]));
+        if (isArrayOrTypedArray(a, b)) {
+            const isTypedArray = !Array.isArray(a);
+            if (a.length !== b.length) {
+                return false;
+            }
+            for (let i = 0, len = a.length; i < len; i++) {
+                if (isTypedArray) {
+                    if (a[i] !== b[i]) {
+                        return false;
+                    }
+                }
+                else {
+                    if (!this.deepEqual(a[i], b[i])) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        if (typeof a === 'object' && typeof b === 'object') {
+            let aKeys = Object.keys(a); // Only traverse own (not inherited) properties.
+            let bKeys = Object.keys(b);
+            aKeys.sort();
+            bKeys.sort();
+            return this.deepEqual(aKeys, bKeys) && aKeys.every(k => this.deepEqual(a[k], b[k]));
+        }
+        // In all other cases, these objects are not considered equivalent.
+        return false;
     }
-    // In all other cases, these objects are not considered equivalent.
-    return false;
 }

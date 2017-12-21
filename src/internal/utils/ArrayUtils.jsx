@@ -20,15 +20,21 @@ function arrayFindImpl(fn, thisArg) {
     }
 }
 
-export function find(array, fn, thisArg) {
-    if (!array) {
-        return;
-    }
-    return (Array.prototype.find || arrayFindImpl).call(array, fn, thisArg);
-}
+/**
+ * Utilities for operations on arrays
+ */
+export default class ArrayUtils {
 
-find.polyfill = function() {
-    if (!Array.prototype.find) {
-        Array.prototype.find = arrayFindImpl;
+    static find(array, fn, thisArg) {
+        if (!array) {
+            return;
+        }
+        return (Array.prototype.find || arrayFindImpl).call(array, fn, thisArg);
     }
-};
+
+    static polyfill() {
+        if (!Array.prototype.find) {
+            Array.prototype.find = arrayFindImpl;
+        }
+    }
+}

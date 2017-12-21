@@ -11,19 +11,18 @@
  *
  */
 
-/**
-    Utilities for serializing a store, so we can reconstruct it without knowing its type.
-    Stores register with the StoreSerializer, so we're able to match a store name back to its class.
-
-    In the future we could update so we don't need a map, since the @State.XXX properties tell us what
-    to serialize to. It's a bit trickier when you're just pushing one item onto an array though (this doesn't
-    go through the fromJSON method), so we'd need some more refactoring to support that. This is just an
-    implementation detail though - clients don't need to worry about this.
-**/
-
 import ActionDispatcher from './ActionDispatcher';
 import Store from './Store';
 
+/**
+ * Utilities for serializing a store, so we can reconstruct it without knowing its type.
+ * Stores register with the StoreSerializer, so we're able to match a store name back to its class.
+ *
+ * In the future we could update so we don't need a map, since the @State.XXX properties tell us what
+ * to serialize to. It's a bit trickier when you're just pushing one item onto an array though (this doesn't
+ * go through the fromJSON method), so we'd need some more refactoring to support that. This is just an
+ * implementation detail though - clients don't need to worry about this.
+ */
 export default class StoreSerializer {
 
     static _nameToClass = {};

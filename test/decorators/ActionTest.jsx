@@ -17,9 +17,9 @@ import assert from 'assert';
 import Utils from '../Utils';
 
 // We sneak a look at ActionDispatcher as part of the tests, but it's internal
-import ActionDispatcher from '../src/internal/state/ActionDispatcher';
+import ActionDispatcher from '../../src/internal/state/ActionDispatcher';
 
-import { Action, Store, State } from '../index';
+import { Action, Store, State } from '../../index';
 
 describe('@Action decorator', () => {
 
@@ -32,7 +32,7 @@ describe('@Action decorator', () => {
             assert(TestClass);
         }
 
-        Utils.assertError(test, 'Action is not defined');
+        Utils.assertError(test, '@Action must be used on a method, not a class.');
     });
 
     it('@Action not allowed on a property that\'s not a method', () => {

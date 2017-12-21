@@ -12,7 +12,7 @@
  */
 
 import BaseTaskQueue from './BaseTaskQueue';
-import Bind from '../decorators/Bind';
+import Bind from '../../decorators/Bind';
 
 export default class NestedTaskQueue extends BaseTaskQueue {
 

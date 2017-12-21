@@ -33,6 +33,7 @@ export { default as Debounce } from './src/decorators/Debounce';
 export { default as Delay } from './src/decorators/Delay';
 export { default as Memoize } from './src/decorators/Memoize';
 export { default as Observable } from './src/decorators/Observable';
+export { default as Prototype } from './src/decorators/Prototype';
 export { default as State } from './src/decorators/State';
 export { default as Store } from './src/decorators/Store';
 export { default as Task } from './src/decorators/Task';
@@ -40,6 +41,6 @@ export { default as Throttle } from './src/decorators/Throttle';
 export { default as Wrap } from './src/decorators/Wrap';
 
 // Middleware
-export { default as protectorMiddleware } from 'ProtectorMiddleware';
-export { default as remoteDevMiddleware } from 'RemoteDevMiddleware';
-export { default as thunkMiddleware } from 'ThunkMiddleware';
+export { default as protectorMiddleware } from './src/middleware/protectorMiddleware';
+export { default as remoteDevMiddleware } from './src/middleware/remoteDevMiddleware';
+export { default as thunkMiddleware } from './src/middleware/thunkMiddleware';

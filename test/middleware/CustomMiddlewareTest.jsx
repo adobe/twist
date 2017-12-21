@@ -15,7 +15,7 @@
 
 import assert from 'assert';
 
-import { Store, State, Action } from '../index';
+import { Store, State, Action } from '../../index';
 
 describe('Custom Middleware', () => {
 

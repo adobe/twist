@@ -16,9 +16,8 @@ const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
 
-if (process.env.NODE_ENV === 'test') {
-    config.addBabelPlugin('istanbul');
-}
+const isProduction = process.env.NODE_ENV === 'production';
+const browserTargets = 'last 2 versions';
 
 module.exports = {
     context: __dirname,
@@ -38,18 +37,34 @@ module.exports = {
         path: path.join(__dirname, 'build'),
         filename: '[name].js'
     },
-    devtool: process.env.NODE_ENV === 'production' ? 'source-map' : 'cheap-module-eval-source-map',
+    devtool: isProduction ? 'source-map' : 'cheap-module-eval-source-map',
     module: {
         rules: [ {
+            test: /\.jsx$/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: [
+                        [ 'env', { targets: { browsers: browserTargets } } ]
+                    ],
+                    plugins: [
+                        'transform-decorators-legacy',
+                        'transform-class-properties',
+                        process.env.NODE_ENV === 'test' && 'istanbul'
+                    ].filter(x => x),
+                    sourceMaps: !isProduction
+                }
+            }
+        }, {
             test: /\.css$/,
             use: [ {
                 loader: 'style-loader'
             }, {
                 loader: 'css-loader',
-                options: { sourceMap: true, importLoaders: 1 }
+                options: { sourceMap: !isProduction, importLoaders: 1 }
             }, {
                 loader: 'postcss-loader',
-                options: { plugins: [ autoprefixer(config.getOption('targets')) ] }
+                options: { plugins: [ autoprefixer(browserTargets) ] }
             } ]
         }, {
             test: /\.less$/,
@@ -57,13 +72,13 @@ module.exports = {
                 loader: 'style-loader'
             }, {
                 loader: 'css-loader',
-                options: { sourceMap: true, importLoaders: 1 }
+                options: { sourceMap: !isProduction, importLoaders: 1 }
             }, {
                 loader: 'postcss-loader',
-                options: { plugins: [ autoprefixer(config.getOption('targets')) ] }
+                options: { plugins: [ autoprefixer(browserTargets) ] }
             }, {
                 loader: 'less-loader',
-                options: { sourceMap: true }
+                options: { sourceMap: !isProduction }
             } ]
         }, {
             test: /\.(gif|png|jpg|svg|eot|woff|woff2|ttf|mp4|cur)$/,
@@ -72,10 +87,9 @@ module.exports = {
     },
     plugins: [
         new webpack.DefinePlugin({
-            PRODUCTION: JSON.stringify(process.env.NODE_ENV === 'production')
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
         }),
-        config,
-        new webpack.optimize.UglifyJsPlugin({ sourceMap: true }),
+        new webpack.optimize.UglifyJsPlugin({ sourceMap: !isProduction }),
         new HtmlWebpackPlugin({ title: 'sample-project' })
     ]
 };

@@ -12,10 +12,13 @@
  */
 
 import ObservableBase from './internal/ObservableBase';
-import { arrayFind } from './internal/utils/ArrayUtils';
 
 import Signal from './Signal';
 import Binder from './Binder';
+import ArrayUtils from './internal/utils/ArrayUtils';
+
+// Polyfill Array.find() if necessary, so that ObservableArray also implements it.
+ArrayUtils.polyfill();
 
 /**
  * @summary Wrapper for arrays so that they work with Twist's data binding.
@@ -163,9 +166,6 @@ export default class ObservableArray extends ObservableBase {
     }
 
 }
-
-// Polyfill Array.find() if necessary, so that ObservableArray also implements it.
-arrayFind.polyfill();
 
 var ArrayPrototype = Array.prototype;
 var ObservableArrayPrototype = ObservableArray.prototype;

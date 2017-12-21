@@ -11,14 +11,13 @@
  *
  */
 
-/**
-    State wrapper for ObservableMap
-**/
-
 import ObservableMap from '../../ObservableMap';
 import ActionDispatcher from './ActionDispatcher';
 import StoreSerializer from './StoreSerializer';
 
+/**
+ * State wrapper for ObservableMap
+ */
 export default class StateObservableMap extends ObservableMap {
 
     _linkItem(key, item) {

@@ -104,7 +104,7 @@ export default class Binder extends Disposable {
             // Use .track to identify the code that is invalidating a binding.
             var track = active.track;
             if (track) {
-                let objName = objectId(obj) + '-' + (obj.constructor ? obj.constructor.name : 'Anonymous');
+                let objName = objectId.get(obj) + '-' + (obj.constructor ? obj.constructor.name : 'Anonymous');
                 Logger.log('Recording', objName, eventName);
             }
             active.push({ obj, eventName });

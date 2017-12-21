@@ -16,7 +16,7 @@
 import assert from 'assert';
 import sinon from 'sinon';
 
-import { Store, State, Action, Signal } from '../index';
+import { Store, State, Action, Signal } from '../../index';
 
 describe('Thunk Middleware', () => {
 

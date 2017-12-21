@@ -42,10 +42,10 @@ const PATCHES = [
 ];
 
 /**
-    AsyncBlocker lets you block asynchronous calls while executing a function.
-    This only handles a few common cases - blocking promises and setTimeout/setInterval
-    It's useful to catch some accidental asynchronous actions that aren't marked as being asynchronous.
-**/
+ * AsyncBlocker lets you block asynchronous calls while executing a function.
+ * This only handles a few common cases - blocking promises and setTimeout/setInterval
+ * It's useful to catch some accidental asynchronous actions that aren't marked as being asynchronous.
+ */
 export default class AsyncBlocker {
     static execute(fn) {
         PATCHES.forEach(patch => patch.obj[patch.name] = patch.patch);

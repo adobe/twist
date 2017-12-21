@@ -11,18 +11,16 @@
  *
  */
 
-/**
-    State wrapper for ObservableArray
-**/
-
 import ObservableArray from '../../ObservableArray';
 import ActionDispatcher from './ActionDispatcher';
 import StoreSerializer from './StoreSerializer';
 
-
 // We need this to override the getter/setter
 var lengthProperty = Object.getOwnPropertyDescriptor(ObservableArray.prototype, 'length');
 
+/**
+ * State wrapper for ObservableArray
+ */
 export default class StateObservableArray extends ObservableArray {
 
     _linkItem(index, item) {

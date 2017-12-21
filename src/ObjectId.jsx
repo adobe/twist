@@ -14,34 +14,32 @@
 var lastId = 0;
 var propertyId = '__object_id__';
 
-function SetObjectId(obj, id) {
-    Object.defineProperty(obj, propertyId, {
-        enumerable: false,
-        configurable: false,
-        writable: false,
-        value: id
-    });
-}
+/**
+ * Associate a unique id with an object. This works by storing the id on a hidden property, so the
+ * same object will always have the same id.
+ */
+export default class ObjectId {
 
-function ObjectId(obj) {
-    if (!obj || (typeof obj === 'number' || typeof obj === 'string')) {
-        return obj;
-    }
-
-    if (!obj.hasOwnProperty(propertyId)) {
-        var id = '_' + (++lastId);
+    set(obj, id) {
         Object.defineProperty(obj, propertyId, {
             enumerable: false,
             configurable: false,
             writable: false,
             value: id
         });
-        return id;
     }
 
-    return obj[propertyId];
+    get(obj) {
+        if (!obj || (typeof obj === 'number' || typeof obj === 'string')) {
+            return obj;
+        }
+
+        if (!obj.hasOwnProperty(propertyId)) {
+            var id = '_' + (++lastId);
+            ObjectId.set(obj, id);
+            return id;
+        }
+
+        return obj[propertyId];
+    }
 }
-
-ObjectId.set = SetObjectId;
-
-export default ObjectId;
