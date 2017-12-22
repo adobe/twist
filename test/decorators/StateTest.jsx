@@ -466,41 +466,4 @@ describe('@State.XXX decorators', () => {
         assert.equal(JSON.stringify(test.toJSON()), JSON.stringify(original));
     });
 
-    it('@State.XXX decorators shouldn\'t support static mode', () => {
-
-        @Store
-        class TestRefClass {
-            @State.byVal x;
-            @State.byVal y;
-        }
-
-        function testArray() {
-            @Store
-            class TestClass {
-                @State.byRefArray(TestRefClass, true) x;
-            }
-            assert(TestClass);
-        }
-
-        function testCustomArray() {
-            @Store
-            class TestClass {
-                @State.byCustomRefArray(TestRefClass, true) x;
-            }
-            assert(TestClass);
-        }
-
-        function testMap() {
-            @Store
-            class TestClass {
-                @State.byRefMap(TestRefClass, true) x;
-            }
-            assert(TestClass);
-        }
-
-        Utils.assertError(testArray, 'static is not supported for @State.byRefArray');
-        Utils.assertError(testCustomArray, 'static is not supported for @State.byCustomRefArray');
-        Utils.assertError(testMap, 'static is not supported for @State.byRefMap');
-    });
-
 });

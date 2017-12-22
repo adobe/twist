@@ -20,7 +20,7 @@ var propertyId = '__object_id__';
  */
 export default class ObjectId {
 
-    set(obj, id) {
+    static set(obj, id) {
         Object.defineProperty(obj, propertyId, {
             enumerable: false,
             configurable: false,
@@ -29,7 +29,7 @@ export default class ObjectId {
         });
     }
 
-    get(obj) {
+    static get(obj) {
         if (!obj || (typeof obj === 'number' || typeof obj === 'string')) {
             return obj;
         }

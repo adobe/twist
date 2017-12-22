@@ -67,34 +67,34 @@ function exportables(obj) {
 /**
     The @State.xxx decorators.
 **/
-export default class State {
+class State {
 
     /**
         Value types
     **/
 
     @DecoratorUtils.wrapPropertyDecorator
-    static byVal(target, property, descriptor, config = null) {
+    byVal(target, property, descriptor, config = null) {
         return exportables(target).add(property, shallowClone, shallowClone, DecoratorUtils.getInitialValue(descriptor), config);
     }
 
     @DecoratorUtils.wrapPropertyDecorator
-    static byBooleanVal(target, property, descriptor, config = null) {
+    byBooleanVal(target, property, descriptor, config = null) {
         return exportables(target).add(property, toBoolean, Boolean, DecoratorUtils.getInitialValue(descriptor), config);
     }
 
     @DecoratorUtils.wrapPropertyDecorator
-    static byNumberVal(target, property, descriptor, config = null) {
+    byNumberVal(target, property, descriptor, config = null) {
         return exportables(target).add(property, Number, Number, DecoratorUtils.getInitialValue(descriptor), config);
     }
 
     @DecoratorUtils.wrapPropertyDecorator
-    static bySimpleVal(target, property, descriptor, config = null) {
+    bySimpleVal(target, property, descriptor, config = null) {
         return exportables(target).add(property, identity, identity, DecoratorUtils.getInitialValue(descriptor), config);
     }
 
     @DecoratorUtils.wrapPropertyDecorator
-    static byCustomVal(target, property, descriptor, type, defaultValue) {
+    byCustomVal(target, property, descriptor, type, defaultValue) {
         return exportables(target).add(property,
             function(jsonValue) {
                 return type.parse(jsonValue !== undefined ? jsonValue : defaultValue, this, property);
@@ -112,7 +112,7 @@ export default class State {
     **/
 
     @DecoratorUtils.wrapPropertyDecorator
-    static byRef(target, property, descriptor, RefType) {
+    byRef(target, property, descriptor, RefType) {
         return exportables(target).add(property,
             (jsonValue) => {
                 var value = new RefType();
@@ -125,7 +125,7 @@ export default class State {
     }
 
     @DecoratorUtils.wrapPropertyDecorator
-    static byOptionalRef(target, property, descriptor, RefType) {
+    byOptionalRef(target, property, descriptor, RefType) {
         return exportables(target).add(property,
             (jsonValue) => {
                 if (!jsonValue) {
@@ -142,7 +142,7 @@ export default class State {
     }
 
     @DecoratorUtils.wrapPropertyDecorator
-    static byCustomRef(target, property, descriptor, typeFn) {
+    byCustomRef(target, property, descriptor, typeFn) {
         return exportables(target).add(property,
             function(jsonValue) {
                 var Ref = typeFn(jsonValue, this);
@@ -166,7 +166,7 @@ export default class State {
     **/
 
     @DecoratorUtils.wrapPropertyDecorator
-    static byArray(target, property, descriptor, isStatic) {
+    byArray(target, property, descriptor, isStatic) {
         return exportables(target).add(property,
             function(jsonValue) {
                 var result = slice(jsonValue) || [];
@@ -178,7 +178,7 @@ export default class State {
     }
 
     @DecoratorUtils.wrapPropertyDecorator
-    static byRefArray(target, property, descriptor, RefType, isStatic) {
+    byRefArray(target, property, descriptor, RefType, isStatic) {
         return exportables(target).add(property,
             function(jsonValue) {
                 var result = [];
@@ -201,7 +201,7 @@ export default class State {
 
 
     @DecoratorUtils.wrapPropertyDecorator
-    static byCustomRefArray(target, property, descriptor, typeFn, isStatic) {
+    byCustomRefArray(target, property, descriptor, typeFn, isStatic) {
         return exportables(target).add(property,
             function(jsonValue) {
                 var result = [];
@@ -235,7 +235,7 @@ export default class State {
     **/
 
     @DecoratorUtils.wrapPropertyDecorator
-    static byMap(target, property, descriptor, isStatic) {
+    byMap(target, property, descriptor, isStatic) {
         return exportables(target).add(property,
             function(jsonValue) {
                 let result = Object.assign({}, jsonValue);
@@ -259,7 +259,7 @@ export default class State {
 
 
     @DecoratorUtils.wrapPropertyDecorator
-    static byRefMap(target, property, descriptor, RefType, isStatic) {
+    byRefMap(target, property, descriptor, RefType, isStatic) {
         return exportables(target).add(property,
             function(jsonValue) {
                 let result = {};
@@ -299,8 +299,11 @@ export default class State {
     **/
 
     @DecoratorUtils.wrapPropertyDecorator
-    static alias(target, property, descriptor, jsonName) {
+    alias(target, property, descriptor, jsonName) {
         exportables(target).alias(jsonName, property);
     }
 
 }
+
+// TODO: The above properties should be static, but that doesn't work right now with the @DecoratorUtils.wrapPropertyDecorator
+export default new State;

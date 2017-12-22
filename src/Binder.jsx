@@ -20,7 +20,7 @@ import Prototype from './decorators/Prototype';
 import TaskQueue from './TaskQueue';
 import Signal from './Signal';
 import Disposable from './Disposable';
-import objectId from './ObjectId';
+import ObjectId from './ObjectId';
 
 var runFilters = Filters.filter;
 
@@ -104,7 +104,7 @@ export default class Binder extends Disposable {
             // Use .track to identify the code that is invalidating a binding.
             var track = active.track;
             if (track) {
-                let objName = objectId.get(obj) + '-' + (obj.constructor ? obj.constructor.name : 'Anonymous');
+                let objName = ObjectId.get(obj) + '-' + (obj.constructor ? obj.constructor.name : 'Anonymous');
                 Logger.log('Recording', objName, eventName);
             }
             active.push({ obj, eventName });
