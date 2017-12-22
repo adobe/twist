@@ -19,7 +19,7 @@ import Utils from '../Utils';
 // We sneak a look at ActionDispatcher as part of the tests, but it's internal
 import ActionDispatcher from '../../src/internal/state/ActionDispatcher';
 
-import { Store, State, Action, ObservableArray, TaskQueue } from '../../index';
+import { ObservableArray, TaskQueue } from '../../index';
 
 describe('@State.XXX decorators', () => {
 

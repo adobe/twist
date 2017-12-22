@@ -16,7 +16,7 @@
 import assert from 'assert';
 import sinon from 'sinon';
 
-import { Store, State, Action, remoteDevMiddleware } from '../../index';
+import { remoteDevMiddleware } from '../../index';
 
 /**
     Mocking the devtools interface

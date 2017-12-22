@@ -12,6 +12,7 @@
  */
 
 // Core
+export { default as BaseStore } from './src/BaseStore';
 export { default as Binder } from './src/Binder';
 export { default as CollectionBinder } from './src/CollectionBinder';
 export { default as Disposable } from './src/Disposable';

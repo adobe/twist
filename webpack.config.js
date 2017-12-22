@@ -19,6 +19,20 @@ const webpack = require('webpack');
 const isProduction = process.env.NODE_ENV === 'production';
 const browserTargets = 'last 2 versions';
 
+// TODO: We should use the proper base class for the TwistConfiguration, rather than hacking this here
+const autoImport = {};
+const config = {
+    addDecorator: (name, opts) => {
+        opts.module = __dirname + '/index'; // Hack because @twist/core isn't defined
+        if (opts.inherits) {
+            opts.inherits.module = opts.module;
+        }
+        autoImport[name] = opts;
+        return config;
+    }
+};
+require('./config')(config);
+
 module.exports = {
     context: __dirname,
     entry: './example/Main.jsx',
@@ -48,6 +62,7 @@ module.exports = {
                         [ 'env', { targets: { browsers: browserTargets } } ]
                     ],
                     plugins: [
+                        [ '@twist/babel-plugin-transform', { autoImport } ],
                         'transform-decorators-legacy',
                         'transform-class-properties',
                         process.env.NODE_ENV === 'test' && 'istanbul'

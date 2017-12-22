@@ -11,12 +11,12 @@
  *
  */
 
-import Exportable from './Exportable';
-import ActionDispatcher from './ActionDispatcher';
-import StoreSerializer from './StoreSerializer';
-import thunkMiddleware from '../../middleware/ThunkMiddleware';
+import Exportable from './internal/state/Exportable';
+import ActionDispatcher from './internal/state/ActionDispatcher';
+import StoreSerializer from './internal/state/StoreSerializer';
+import thunkMiddleware from './middleware/ThunkMiddleware';
 
-import Observable from '../../decorators/Observable';
+import Observable from './decorators/Observable';
 
 /**
  * Private data associated with a store.
@@ -42,7 +42,7 @@ class StoreData {
  * router back down to the target store. Actions also propagate to sub-stores (unless they return a value, which prevents propagation),
  * so that a single action can be handled by multiple stores.
  */
-export default class Store extends Exportable {
+export default class BaseStore extends Exportable {
 
     __data = new StoreData;
 
@@ -85,7 +85,7 @@ export default class Store extends Exportable {
             subStores[name].__data.name = undefined;
             subStores[name] = undefined;
         }
-        if (store && (store instanceof Store)) {
+        if (store && (store instanceof BaseStore)) {
             // Make sure the store doesn't already have a parent (different from us!) - that's a no-no!
             if (store.__data.parent && store.__data.parent !== this) {
                 throw new Error('The store you\'re attempting to assign to "' + name + '" already belongs to another store. The store hierarchy must be a tree.');

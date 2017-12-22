@@ -11,7 +11,7 @@
  *
  */
 
-import Store from '../internal/state/Store';
+import BaseStore from '../BaseStore';
 import DecoratorUtils from '../internal/utils/DecoratorUtils';
 
 export default DecoratorUtils.makePropertyDecorator((target, property, descriptor, options = {}) => {
@@ -19,7 +19,7 @@ export default DecoratorUtils.makePropertyDecorator((target, property, descripto
         throw new Error('@Action can only be used with a method (the handler for the action)');
     }
 
-    if (!(target instanceof Store)) {
+    if (!(target instanceof BaseStore)) {
         throw new Error('@Action can only be used for methods on a Store');
     }
 

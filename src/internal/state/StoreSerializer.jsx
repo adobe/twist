@@ -12,7 +12,7 @@
  */
 
 import ActionDispatcher from './ActionDispatcher';
-import Store from './Store';
+import BaseStore from '../../BaseStore';
 
 /**
  * Utilities for serializing a store, so we can reconstruct it without knowing its type.
@@ -45,7 +45,7 @@ export default class StoreSerializer {
     }
 
     static valueToJSON(value) {
-        if (value && value instanceof Store) {
+        if (value && value instanceof BaseStore) {
             return {
                 className: value.__classLookupName,
                 json: value.toJSON()

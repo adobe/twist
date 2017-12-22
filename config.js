@@ -11,13 +11,66 @@
  *
  */
 
-export function configure(config) {
+module.exports = function(config) {
     return config
-        .addDecorator('Store', {
-            classPath: './decorators/Store',
-            inherits: './internal/state/Store'
+        .addDecorator('Abstract', {
+            module: '@twist/core',
+            export: 'Abstract'
         })
-        .addDecorator('State', './decorators/State')
-        .addDecorator('Action', './decorators/Action')
-        .addDecorator('Cache', './decorators/Cache');
-}
+        .addDecorator('Action', {
+            module: '@twist/core',
+            export: 'Action'
+        })
+        .addDecorator('Bind', {
+            module: '@twist/core',
+            export: 'Bind'
+        })
+        .addDecorator('Cache', {
+            module: '@twist/core',
+            export: 'Cache'
+        })
+        .addDecorator('Debounce', {
+            module: '@twist/core',
+            export: 'Debounce'
+        })
+        .addDecorator('Delay', {
+            module: '@twist/core',
+            export: 'Delay'
+        })
+        .addDecorator('Memoize', {
+            module: '@twist/core',
+            export: 'Memoize'
+        })
+        .addDecorator('Observable', {
+            module: '@twist/core',
+            export: 'Observable'
+        })
+        .addDecorator('Prototype', {
+            module: '@twist/core',
+            export: 'Prototype'
+        })
+        .addDecorator('State', {
+            module: '@twist/core',
+            export: 'State'
+        })
+        .addDecorator('Store', {
+            module: '@twist/core',
+            export: 'Store',
+            inherits: {
+                module: '@twist/core',
+                export: 'BaseStore'
+            }
+        })
+        .addDecorator('Task', {
+            module: '@twist/core',
+            export: 'Task'
+        })
+        .addDecorator('Throttle', {
+            module: '@twist/core',
+            export: 'Throttle'
+        })
+        .addDecorator('Wrap', {
+            module: '@twist/core',
+            export: 'Wrap'
+        });
+};

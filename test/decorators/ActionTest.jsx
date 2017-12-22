@@ -19,8 +19,6 @@ import Utils from '../Utils';
 // We sneak a look at ActionDispatcher as part of the tests, but it's internal
 import ActionDispatcher from '../../src/internal/state/ActionDispatcher';
 
-import { Action, Store, State } from '../../index';
-
 describe('@Action decorator', () => {
 
     it('@Action not allowed on a class', () => {

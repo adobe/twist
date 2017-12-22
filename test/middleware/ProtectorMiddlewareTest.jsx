@@ -16,7 +16,7 @@
 import assert from 'assert';
 import Utils from '../Utils';
 
-import { Store, State, Action, protectorMiddleware } from '../../index';
+import { protectorMiddleware } from '../../index';
 
 describe('Protector Middleware', () => {
 
