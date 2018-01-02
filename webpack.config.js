@@ -20,18 +20,13 @@ const isProduction = process.env.NODE_ENV === 'production';
 const browserTargets = 'last 2 versions';
 
 // TODO: We should use the proper base class for the TwistConfiguration, rather than hacking this here
-const autoImport = {};
-const config = {
-    addDecorator: (name, opts) => {
-        opts.module = __dirname + '/index'; // Hack because @twist/core isn't defined
-        if (opts.inherits) {
-            opts.inherits.module = opts.module;
-        }
-        autoImport[name] = opts;
-        return config;
-    }
-};
-require('./config')(config);
+const TwistConfiguration = require('./babel/TwistConfiguration');
+const config = new TwistConfiguration()
+    .addLibrary(__dirname);
+
+if (process.env.NODE_ENV === 'test') {
+    config.addBabelPlugin('istanbul');
+}
 
 module.exports = {
     context: __dirname,
@@ -57,18 +52,7 @@ module.exports = {
             test: /\.jsx$/,
             use: {
                 loader: 'babel-loader',
-                options: {
-                    presets: [
-                        [ 'env', { targets: { browsers: browserTargets } } ]
-                    ],
-                    plugins: [
-                        [ '@twist/babel-plugin-transform', { autoImport } ],
-                        'transform-decorators-legacy',
-                        'transform-class-properties',
-                        process.env.NODE_ENV === 'test' && 'istanbul'
-                    ].filter(x => x),
-                    sourceMaps: !isProduction
-                }
+                options: config.babelOptions
             }
         }, {
             test: /\.css$/,
