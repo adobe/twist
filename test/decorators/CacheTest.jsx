@@ -14,9 +14,6 @@
 /* global it, describe */
 
 import assert from 'assert';
-import sinon from 'sinon';
-
-import { TaskQueue, Binder } from '../../index';
 
 describe('@Cache decorator', () => {
 

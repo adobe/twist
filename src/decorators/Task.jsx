@@ -12,8 +12,9 @@
  */
 
 import TaskQueue from '../TaskQueue';
+import DecoratorUtils from '../internal/utils/DecoratorUtils';
 
-export default function(taskQueue, priority) {
+export default DecoratorUtils.makePropertyDecorator((target, property, descriptor, taskQueue, priority) => {
     if (typeof taskQueue === 'number') {
         priority = taskQueue;
         taskQueue = TaskQueue;
@@ -27,46 +28,44 @@ export default function(taskQueue, priority) {
         }
     }
 
-    return function Task(property) {
-        let value = property.fn;
+    let value = DecoratorUtils.getInitialValue(descriptor);
+    let taskName = '_task_' + property;
 
-        let key = property.name;
-        let taskName = '_task_' + key;
+    delete descriptor.value;
+    delete descriptor.writable;
+    descriptor.get = function() {
+        if (target === this) {
+            // The prototype should not bind the value.
+            return value;
+        }
 
-        property.setGetter(function() {
-            if (property.ref === this) {
-                // The prototype should not bind the value.
-                return value;
-            }
+        let args;
 
-            let args;
-
-            // This is a workaround for a bug in Safari that would
-            // execute the getter even after the property was replaced with a fixed value.
-            let pusher = this[taskName];
-            if (pusher) {
-                return pusher;
-            }
-
-            let binded = () => {
-                if (!this.isDisposed) {
-                    value.apply(this, args);
-                }
-            };
-
-            pusher = (...rest) => {
-                args = rest;
-                taskQueue.push(binded, priority);
-            };
-            pusher.cancel = () => {
-                taskQueue.remove(binded);
-            };
-
-            // Next time just return the binded value directly.
-            Object.defineProperty(this, taskName, { value: pusher, enumerable: false });
-            Object.defineProperty(this, key, { value: pusher, enumerable: false });
-
+        // This is a workaround for a bug in Safari that would
+        // execute the getter even after the property was replaced with a fixed value.
+        let pusher = this[taskName];
+        if (pusher) {
             return pusher;
-        });
+        }
+
+        let binded = () => {
+            if (!this.isDisposed) {
+                value.apply(this, args);
+            }
+        };
+
+        pusher = (...rest) => {
+            args = rest;
+            taskQueue.push(binded, priority);
+        };
+        pusher.cancel = () => {
+            taskQueue.remove(binded);
+        };
+
+        // Next time just return the binded value directly.
+        Object.defineProperty(this, taskName, { value: pusher, enumerable: false });
+        Object.defineProperty(this, property, { value: pusher, enumerable: false });
+
+        return pusher;
     };
-}
+});

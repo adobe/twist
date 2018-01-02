@@ -11,20 +11,23 @@
  *
  */
 
+import DecoratorUtils from '../internal/utils/DecoratorUtils';
+
 export default function(wrapper, origSuffix, ...args) {
-    return function Wrap(property) {
-        let value = property.getValue();
-        let key = property.name;
-        let workaroundKey = key + '__Safari_workaround';
+    return function Wrap(target, property, descriptor) {
+        const value = DecoratorUtils.getInitialValue(descriptor);
+        const workaroundKey = property + '__Safari_workaround';
 
         if (origSuffix) {
             // [nowKey] is the original function
-            let nowKey = key + origSuffix;
-            Object.defineProperty(property.ref, nowKey, { value });
+            const nowKey = property + origSuffix;
+            Object.defineProperty(target, nowKey, { value });
         }
 
-        property.setGetter(function() {
-            if (property.ref === this) {
+        delete descriptor.value;
+        delete descriptor.writable;
+        descriptor.get = function() {
+            if (target === this) {
                 // The prototype should not bind the value.
                 return value;
             }
@@ -37,11 +40,11 @@ export default function(wrapper, origSuffix, ...args) {
             }
 
             wrapped = wrapper(value, ...args);
-            let descriptor = { value: wrapped, enumerable: false, configurable: true };
-            Object.defineProperty(this, key, descriptor);
+            const descriptor = { value: wrapped, enumerable: false, configurable: true };
+            Object.defineProperty(this, property, descriptor);
             Object.defineProperty(this, workaroundKey, descriptor);
 
             return wrapped;
-        });
+        };
     };
 }
