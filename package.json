@@ -1,6 +1,7 @@
 {
   "name": "@twist/core",
   "version": "0.1.0",
+  "author": "Adobe Systems Inc.",
   "repository": "none",
   "license": "Apache-2.0",
   "main": "index.js",
@@ -9,7 +10,7 @@
     "watch": "webpack-dev-server --hot",
     "test": "npm run test:node && npm run test:browser",
     "test:browser": "karma start --browsers Firefox --single-run",
-    "test:node": "nyc mocha test-babel --reporter spec --recursive --growl",
+    "test:node": "nyc mocha babel-test --reporter spec --recursive --growl",
     "linter": "eslint --ext .js,.jsx .",
     "linter:fix": "eslint --ext .js,.jsx . --fix"
   },
@@ -53,5 +54,10 @@
     "webpack": "3.4.1",
     "webpack-dev-server": "2.6.1"
   },
-  "author": "Adobe Systems Inc."
+  "nyc": {
+    "exclude": [
+      "test/**/*.*",
+      "babel-test/**/*.*"
+    ]
+  }
 }
