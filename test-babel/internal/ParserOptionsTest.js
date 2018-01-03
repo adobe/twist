@@ -15,7 +15,7 @@
 
 var assert = require('assert');
 
-var ParserOptions = require('../../../babel/internal/ParserOptions');
+var ParserOptions = require('../../babel/internal/ParserOptions');
 
 describe('ParserOptions', () => {
 
@@ -28,7 +28,6 @@ describe('ParserOptions', () => {
             allowImportExportEverywhere: true,
             plugins: [
                 'jsx',
-                'flow',
                 'asyncFunctions',
                 'classConstructorCall',
                 'doExpressions',

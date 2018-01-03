@@ -14,7 +14,7 @@
 /* global describe, it */
 
 const assert = require('assert');
-const TargetsMeta = require('../../../babel/internal/TargetsMeta');
+const TargetsMeta = require('../../babel/internal/TargetsMeta');
 
 describe('TargetsMeta', () => {
 

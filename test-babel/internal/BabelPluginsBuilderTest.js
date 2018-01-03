@@ -14,8 +14,7 @@
 /* global describe, it */
 
 const assert = require('assert');
-const BabelPluginsBuilder = require('../../../babel/internal/BabelPluginsBuilder');
-const StaticBabelPresetEnv = require('../../../babel/internal/StaticBabelPresetEnv');
+const BabelPluginsBuilder = require('../../babel/internal/BabelPluginsBuilder');
 
 describe('BabelPluginsBuilder', () => {
 
@@ -30,14 +29,6 @@ describe('BabelPluginsBuilder', () => {
         let plugins = new BabelPluginsBuilder();
         plugins.add(require('babel-plugin-check-es2015-constants'), { loose: true });
         assert.equal(plugins.build().plugins[0][1].loose, true);
-    });
-
-    it('turns presets into plugins if pre-required', () => {
-        let plugins = new BabelPluginsBuilder();
-        plugins.addPreset(StaticBabelPresetEnv(), { loose: true });
-        let options = plugins.build();
-        assert.equal(options.plugins.length, 21);
-        assert.equal(options.presets.length, 0);
     });
 
     it('preserves presets as presets if a string', () => {

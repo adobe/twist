@@ -13,26 +13,31 @@
 
 /* global describe, it */
 
+const path = require('path');
+const sinon = require('sinon');
 const assert = require('assert');
-const LibraryLoader = require('../../../babel/internal/LibraryLoader');
+const mockery = require('mockery');
+const LibraryLoader = require('../../babel/internal/LibraryLoader');
 
 describe('LibraryLoader', () => {
     it('loadLibrary', () => {
         const loader = new LibraryLoader();
-        const libraryFn = (config, options) => {
-            config.calledWithConfig = config;
-            config.calledWithOptions = options;
+        const config = {
+            addDecorator: () => config,
+            addComponent: () => config
         };
-        const config = {};
+        sinon.spy(config, 'addDecorator');
+        sinon.spy(config, 'addComponent');
         const options = {};
-        loader.loadLibrary(libraryFn, config, options);
+        loader.loadLibrary(path.join(__dirname, '../testLibrary'), config, options);
 
-        assert.strictEqual(config.calledWithConfig, config);
-        assert.strictEqual(config.calledWithOptions, options);
+        assert.equal(config.addDecorator.callCount, 1);
+        assert.equal(config.addComponent.callCount, 1);
+        assert.strictEqual(config.passedOptions, options);
     });
 
     it('getPackageJsonInfo', () => {
-        const myPath = require.resolve('../package.json');
+        const myPath = require.resolve('../../package.json');
         const myMod = require(myPath);
         const packageJsonInfo = LibraryLoader.getPackageJsonInfo(__dirname);
         assert.deepEqual(packageJsonInfo, {
@@ -42,7 +47,7 @@ describe('LibraryLoader', () => {
         assert(!LibraryLoader.getPackageJsonInfo('/nonexistent-dir/'));
     });
 
-    it('setPathOfCurrentLibrary, loading libraries & duplicate handling', () => {
+    it('loading libraries & duplicate handling', () => {
         const originalGetPackageJsonInfo = LibraryLoader.getPackageJsonInfo;
         const loader = new LibraryLoader();
 
@@ -55,19 +60,22 @@ describe('LibraryLoader', () => {
 
         function pretendLoadLibrary(name, version, cb) {
             setPackageJson(name, version);
-            loader.loadLibrary(() => {
-                loader.setPathOfCurrentLibrary('.');
-
-                // Setting the path again should have no effect (i.e. we should NOT grab package.json changes here)
-                setPackageJson('another lib', '0.0');
-                loader.setPathOfCurrentLibrary('...');
-
+            loader.loadLibrary(name, () => {
                 assert.equal(loader.currentLibrary.name, name);
                 assert.equal(loader.currentLibrary.version, version);
                 assert.equal(loader.currentLibrary.path, '/some/fake');
                 cb && cb();
             });
         }
+
+        mockery.enable({
+            warnOnReplace: false,
+            warnOnUnregistered: false,
+            useCleanCache: true
+        });
+        mockery.registerMock('LibraryA/config', cb => cb());
+        mockery.registerMock('LibraryB/config', cb => cb());
+        mockery.registerMock('LibraryC/config', cb => cb());
 
         pretendLoadLibrary('LibraryA', '1.0', () => {
             pretendLoadLibrary('LibraryB', '2.0', () => {
@@ -98,5 +106,7 @@ You're trying to load LibraryB 4.0, but LibraryB 2.0 was already loaded:
         assert.deepEqual(loader.libraryInfos.map(info => info.name), [ 'LibraryA', 'LibraryB', 'LibraryC', 'LibraryB' ]);
 
         LibraryLoader.getPackageJsonInfo = originalGetPackageJsonInfo;
+
+        mockery.disable();
     });
 });

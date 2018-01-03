@@ -48,7 +48,7 @@ module.exports = class BabelConfig {
         plugins.add(__dirname + '/ParserOptions');
 
         if (options.useBabelModuleResolver) {
-            plugins.add('module-resolver', { alias: options.paths });
+            plugins.add('module-resolver', { alias: options.aliases });
         }
 
         // Note: The Twist plugin will vary depending on the underlying UI framework - so this can be overridden by

@@ -11,22 +11,24 @@
  *
  */
 
-module.exports = function() {
-    return {
-        manipulateOptions(opts, parserOpts) {
-            // We do want to allow imports inside if checks. This way we can use defines
-            // to avoid compiling parts of the application.
-            parserOpts.allowImportExportEverywhere = true;
+module.exports = function(config, options) {
 
-            parserOpts.plugins.push(
-                'jsx',
-                'asyncFunctions',
-                'classConstructorCall',
-                'doExpressions',
-                'decorators',
-                'classProperties',
-                'asyncGenerators'
-            );
-        }
-    };
+    // For testing:
+    config.numAdded = config.numAdded || 0;
+    config.numAdded++;
+    config.passedOptions = options;
+
+    return config
+        .addDecorator('Store', {
+            module: '@twist/core',
+            export: 'Store',
+            inherits: {
+                module: '@twist/core',
+                export: 'BaseStore'
+            }
+        })
+        .addComponent('my:component', {
+            module: '@twist/core',
+            export: 'MyComponent'
+        });
 };

@@ -11,7 +11,6 @@
  *
  */
 
-const path = require('path');
 const BabelConfig = require('./internal/BabelConfig');
 const LibraryLoader = require('./internal/LibraryLoader');
 
@@ -180,12 +179,12 @@ module.exports = class TwistConfiguration {
      * The complete Twist configuration options
      */
     get twistOptions() {
-        const paths = Object.assign({}, this.libraryLocations, this._pathAliases);
+        const aliases = Object.assign({}, this.libraryLocations, this._pathAliases);
         const autoImport = Object.assign({}, this._decorators, this._components);
         const plugins = this._babelPlugins.slice();
 
         return Object.assign({}, this._options, {
-            paths,
+            aliases,
             autoImport,
             plugins
         });
