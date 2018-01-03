@@ -7,8 +7,8 @@
   "scripts": {
     "build": "webpack",
     "watch": "webpack-dev-server --hot",
-    "test": "npm run test:node; npm run test:browser",
-    "test:broswer": "karma start --browsers Firefox --single-run",
+    "test": "npm run test:node && npm run test:browser",
+    "test:browser": "karma start --browsers Firefox --single-run",
     "test:node": "mocha test-babel --reporter spec --recursive --growl",
     "linter": "eslint --ext .js,.jsx .",
     "linter:fix": "eslint --ext .js,.jsx . --fix"
@@ -45,7 +45,6 @@
     "less": "2.7.1",
     "less-loader": "2.2.3",
     "mocha": "3.4.2",
-    "mockery": "^2.1.0",
     "postcss-loader": "2.0.5",
     "sinon": "2.1.0",
     "style-loader": "0.13.2",
