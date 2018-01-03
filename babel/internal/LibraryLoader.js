@@ -105,7 +105,6 @@ module.exports = class LibraryLoader {
         catch (e) {
             throw new Error(`Failed to load ${libraryName} - check that the node module is installed, and that it has a config.js in its root`);
         }
-        let srcPath = path.join(path.dirname(require.resolve(configName)), 'src');
 
         if (libraryFn.default) {
             libraryFn = libraryFn.default;
@@ -117,7 +116,7 @@ module.exports = class LibraryLoader {
         const libraryInfo = new LibraryInfo(libraryFn, this.currentLibrary);
         this.libraryInfos.push(libraryInfo);
         this.currentLibrary = libraryInfo;
-        this._setPathOfCurrentLibrary(srcPath);
+        this._setPathOfCurrentLibrary(libraryName);
         libraryFn(config, options);
         this.currentLibrary = libraryInfo.parentLibrary;
     }
@@ -126,10 +125,12 @@ module.exports = class LibraryLoader {
      * Set the filesystem path of the current library, if it has not already been set.
      * Once we know the path of the current library, we're able to walk the filesystem to find its `package.json`,
      * and hence its version. If we've already loaded a different version of this package, throw an error.
-     * @param {string} directory
+     * @param {string} libraryName
      * @private
      */
-    _setPathOfCurrentLibrary(dir) {
+    _setPathOfCurrentLibrary(libraryName) {
+        const dir = LibraryLoader.getSourceDir(libraryName);
+
         // If we already have the information for this library, we've already checked that it doesn't conflict.
         if (this.currentLibrary.name) {
             return;
@@ -155,6 +156,16 @@ module.exports = class LibraryLoader {
                 + '\n\n'
                 + existingLib.getLibraryChainStackTrace() + '\n\n');
         }
+    }
+
+    /**
+     * Get the path to the source dir of the library given its npm name
+     * @param {string} libraryName
+     * @return {string} Path to the source dir of the library
+     * @private
+     */
+    static getSourceDir(libraryName) {
+        return path.join(path.dirname(require.resolve(libraryName + '/config')), 'src');
     }
 
     /**

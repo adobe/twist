@@ -3,4 +3,5 @@
 /temp
 npm-debug.log
 .DS_Store
+.nyc_output
 /testing

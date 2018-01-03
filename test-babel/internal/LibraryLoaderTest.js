@@ -16,7 +16,7 @@
 const path = require('path');
 const sinon = require('sinon');
 const assert = require('assert');
-const mockery = require('mockery');
+const mock = require('mock-require');
 const LibraryLoader = require('../../babel/internal/LibraryLoader');
 
 describe('LibraryLoader', () => {
@@ -48,17 +48,20 @@ describe('LibraryLoader', () => {
     });
 
     it('loading libraries & duplicate handling', () => {
-        const originalGetPackageJsonInfo = LibraryLoader.getPackageJsonInfo;
         const loader = new LibraryLoader();
 
+        let packageJsonInfo;
         function setPackageJson(name, version) {
-            LibraryLoader.getPackageJsonInfo = () => ({
+            packageJsonInfo = {
                 path: '/some/fake/package.json',
                 contents: { name, version }
-            });
+            };
         }
 
         function pretendLoadLibrary(name, version, cb) {
+            // loadLibrary() is going to try to require the config file, so need to mock it out
+            mock(name + '/config', cb => cb());
+
             setPackageJson(name, version);
             loader.loadLibrary(name, () => {
                 assert.equal(loader.currentLibrary.name, name);
@@ -68,14 +71,10 @@ describe('LibraryLoader', () => {
             });
         }
 
-        mockery.enable({
-            warnOnReplace: false,
-            warnOnUnregistered: false,
-            useCleanCache: true
-        });
-        mockery.registerMock('LibraryA/config', cb => cb());
-        mockery.registerMock('LibraryB/config', cb => cb());
-        mockery.registerMock('LibraryC/config', cb => cb());
+        // We need to mock out the code to get the src dir as well, because this calls require.resolve
+        // (mock only mocks out require, not require.resolve)
+        sinon.stub(LibraryLoader, 'getSourceDir').callsFake(x => x);
+        sinon.stub(LibraryLoader, 'getPackageJsonInfo').callsFake(() => packageJsonInfo);
 
         pretendLoadLibrary('LibraryA', '1.0', () => {
             pretendLoadLibrary('LibraryB', '2.0', () => {
@@ -105,8 +104,6 @@ You're trying to load LibraryB 4.0, but LibraryB 2.0 was already loaded:
         assert.deepEqual(loader.libraryInfos.map(info => info.version), [ '1.0', '2.0', '3.0', '4.0' ]);
         assert.deepEqual(loader.libraryInfos.map(info => info.name), [ 'LibraryA', 'LibraryB', 'LibraryC', 'LibraryB' ]);
 
-        LibraryLoader.getPackageJsonInfo = originalGetPackageJsonInfo;
-
-        mockery.disable();
+        mock.stopAll();
     });
 });
