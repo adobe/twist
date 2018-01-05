@@ -64,6 +64,9 @@
         "webpack-dev-server": "2.6.1"
     },
     "nyc": {
-        "exclude": ["test/**/*.*", "babel-test/**/*.*"]
+        "exclude": [
+            "test/**/*.*",
+            "babel-test/**/*.*"
+        ]
     }
 }
