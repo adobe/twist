@@ -1,3 +1,12 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Introduction to Twist](#introduction-to-twist)
+  - [Important things to know](#important-things-to-know)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Introduction to Twist
 
 Twist is a state management and container library for JavaScript. It melds some of the best ideas from both [Mobx](http://mobx.js.org) and [Redux](http://redux.js.org/). It is inspired by Mobx's **observables** and **mutable state**, while also using Redux's concepts of **stores** and **actions** to ensure a single pipeline through which state can be mutated. The former mutability allows for an extremely fast and performant state library, while the latter ensures that state is easily managed and tracked (including with time-travelling debugigng tools).

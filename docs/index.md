@@ -1,3 +1,21 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Twist – A JavaScript State Management and Container Library](#twist--a-javascript-state-management-and-container-library)
+  - [Getting Started](#getting-started)
+  - [Fundamentals](#fundamentals)
+  - [Guides](#guides)
+  - [Reference](#reference)
+    - [Core](#core)
+    - [Decorators](#decorators)
+    - [Middleware](#middleware)
+  - [Bindings](#bindings)
+  - [Libraries](#libraries)
+  - [Community](#community)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Twist – A JavaScript State Management and Container Library
 
 ## Getting Started
