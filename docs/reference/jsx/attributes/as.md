@@ -8,7 +8,7 @@
 
 # `as`
 
-The `as` attribute is used with the [`<repeat>`](../components/repeat) and [`<using>`](../components/using) structural components to define a local variable. This variable can be used inside any JSX expressions within the element that defines it.
+The `as` attribute is used with the [`<repeat>`](../components/repeat.md) and [`<using>`](../components/using.md) structural components to define a local variable. This variable can be used inside any JSX expressions within the element that defines it.
 
 Here's an example of the `as` attribute being used with `<repeat>`:
 

@@ -25,7 +25,7 @@ Whenever a field is modified, the associated bindings are automatically invalida
 
 ## Non-primitive fields
 
-The `@Observable` decorator only works with primitive fields – that is, fields that are of a primitive type (like a number or string). In order to observe changes within an `Array`, `Set`, or `Map`, one must create an observable instance. Twist provides an observable wrapper for each case: [`ObservableArray`](../core/ObservableArray.md), [`ObservableSet`](../core/ObservableSet.md), and [`ObservableMap`](.../core/ObservableMap.md). In each case, the methods you would expect are present, although `ObservableArray`s are not indexed using brackets as are `Array`s. Instead you can use `at` and `setAt`. For example:
+The `@Observable` decorator only works with primitive fields – that is, fields that are of a primitive type (like a number or string). In order to observe changes within an `Array`, `Set`, or `Map`, one must create an observable instance. Twist provides an observable wrapper for each case: [`ObservableArray`](../reference/core/ObservableArray.md), [`ObservableSet`](../reference/core/ObservableSet.md), and [`ObservableMap`](.../reference/core/ObservableMap.md). In each case, the methods you would expect are present, although `ObservableArray`s are not indexed using brackets as are `Array`s. Instead you can use `at` and `setAt`. For example:
 
 `Array` instance   | `ObservableArray` instance
 -------------------|---------------------------

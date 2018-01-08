@@ -9,7 +9,7 @@
 
 # Disposable
 
-`Disposable` is a very common base class in Twist - [`SignalDispatcher`](./SignalDispatcher.md) and [`Component`](#../decorators/component.md) all inherit from it. It provides a `dispose()` method, which can handle cleaning up of resources after the object is no longer needed, and methods for linking other disposable objects to it. Anything "linked" will also be disposed when the containing object is disposed.
+`Disposable` is a very common base class in Twist - [`SignalDispatcher`](./SignalDispatcher.md) and [`Component`](../decorators/Component.md) all inherit from it. It provides a `dispose()` method, which can handle cleaning up of resources after the object is no longer needed, and methods for linking other disposable objects to it. Anything "linked" will also be disposed when the containing object is disposed.
 
 You can also create your own subclasses of `Disposable`, as the following example shows:
 
@@ -51,7 +51,7 @@ this.link(() => this.onDispose());
 
 | Method   | Description |
 | -------- | ----------- |
-| `link(instance: Disposable|Function)`        | Links `instance` to the object, so it gets disposed (or called) when `dispose()` is called. Returns `instance`. |
-| `unlink(instance: Disposiable|Function)`      | Unlinks `instance`, so it will no longer get disposed (or called) when `dispose()` is called. |
-| `disposeLink(instance: Disposable|Function)` | Unlinks `instance`, and also immediately disposes (or calls) it. |
+| `link(instance: Disposable / Function)`        | Links `instance` to the object, so it gets disposed (or called) when `dispose()` is called. Returns `instance`. |
+| `unlink(instance: Disposiable / Function)`      | Unlinks `instance`, so it will no longer get disposed (or called) when `dispose()` is called. |
+| `disposeLink(instance: Disposable / Function)` | Unlinks `instance`, and also immediately disposes (or calls) it. |
 | `dispose()`      | Disposes the object, along with everything that's linked to it. |

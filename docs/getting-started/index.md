@@ -17,9 +17,9 @@ Twist makes it incredibly easy to create performant, scaleable stateful applicat
 * **export/import your application state to/from JSON** – this is important for persistence, and server-side rendering.
 * **debug changes to the application state** using the excellent [Redux Devtools Extension](https://github.com/zalmoxisus/redux-devtools-extension).
 
-Twist can be used without any particular front-end framework, but Twist becomes even more powerful when combined with React using the [React bindings for Twist](#). When combined with these bindings, it's easy to:
+Twist can be used without any particular front-end framework, but Twist becomes even more powerful when combined with React using the [React bindings for Twist](https://github.com/adobe/react-twist). When combined with these bindings, it's easy to:
 
-* create **reactive** components that rerender in response to changes in stores
+* create **reactive** components that render in response to changes in stores
 * use **declarative JSX extensions** to perform iterations and conditionals
 * use **JSX extensions** to make it easy to add styling and class changes
 

@@ -9,7 +9,7 @@
 
 # SignalDispatcher
 
-`SignalDispatcher` is a useful base class for objects that need to implement reactivity and dispatch and handle events. For example, [`Component`](#../decorators/component) inherits from `SignalDispatcher`.
+`SignalDispatcher` is a useful base class for objects that need to implement reactivity and dispatch and handle events. For example, [`Component`](../decorators/Component.md) inherits from `SignalDispatcher`.
 
 A `SignalDispatcher` has a `watch()` method that's useful for programmatically reacting to changes on an expression. Here's an example, using a component as the instance of `SignalDispatcher`:
 

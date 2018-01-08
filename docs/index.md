@@ -13,7 +13,7 @@
     - [Middleware](#middleware)
   - [Bindings](#bindings)
   - [Libraries](#libraries)
-  - [Community](#community)
+  - [Community and Contributing](#community-and-contributing)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

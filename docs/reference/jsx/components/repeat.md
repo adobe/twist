@@ -45,4 +45,4 @@ In both cases, this renders the following in the DOM (the `<repeat>` component i
 </ul>
 ```
 
-Note that if the array contents can change, you need to use an [`ObservableArray`](../core/ObservableArray.md) in order for reactivity to work - otherwise, Twist won't know to re-render when items in the list change.
+Note that if the array contents can change, you need to use an [`ObservableArray`](../../core/ObservableArray.md) in order for reactivity to work - otherwise, Twist won't know to re-render when items in the list change.

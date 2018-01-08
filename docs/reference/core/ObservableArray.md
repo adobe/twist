@@ -19,7 +19,7 @@ Note that you can't use the normal array indexing with an `ObservableArray`, bec
 * Use `observableArray.setAt(i, x)` where you would use `array[i] = x`.
 * Use `observableArray.forEach(item => ...)` where you would use `for(var item in array) { ... }.`
 
-> **NOTE**: In a [`<repeat>`](../jsx/components/repeat), however, you can iterate over an `ObservableArray` in precisely the same way as a normal array. This is because the `<repeat>` implementation knows about `ObservableArray`, and can iterate over it correctly.
+> **NOTE**: In a [`<repeat>`](../jsx/components/repeat.md), however, you can iterate over an `ObservableArray` in precisely the same way as a normal array. This is because the `<repeat>` implementation knows about `ObservableArray`, and can iterate over it correctly.
 
 ## Constructor
 

@@ -8,7 +8,7 @@
 
 # @Attribute
 
-The `@Attribute` decorator allows Twist to observe a property of a component, _and_ exposes it to a user of the component. Essentially, the attributes of a component define its interface. This is in contrast to [@Observable](../decorators/observable), which is used for private state.
+The `@Attribute` decorator allows Twist to observe a property of a component, _and_ exposes it to a user of the component. Essentially, the attributes of a component define its interface. This is in contrast to [@Observable](./Observable.md), which is used for private state.
 
 Like `@Observable`, under the hood, this sets up a getter and setter for the property, so that Twist knows which expressions depend on it, and when it changes. 
 
