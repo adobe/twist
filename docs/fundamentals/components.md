@@ -110,9 +110,7 @@ In this example, we're mixing observables with attributes. We need some internal
 
 We've also done something else interesting in this component: the actual seconds remaining is calculated in a getter. The `render` method will _still_ be triggered whenever the `currentTime` observable is updated, even though the `render` method doesn't _directly_ reference `currentTime`.
 
-## Two-way Data Binding
-
-...
+### TODO:
 
 * `ref` should be a reference, not a function
 * `render` should only ever be a `return` with JSX. (no other logic)

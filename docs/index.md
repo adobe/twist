@@ -75,8 +75,24 @@
 * [`@Throttle`](./reference/decorators/Throttle.md)
 * [`@Wrap`](./reference/decorators/Wrap.md)
 
+### JSX
+
+* Attributes
+  * [as](./reference/jsx/attributes/as.md)
+  * [ref](./reference/jsx/attributes/ref.md)
+* Components
+  * [else](./reference/jsx/components/else.md)
+  * [elseif](./reference/jsx/components/elseif.md)
+  * [g](./reference/jsx/components/g.md)
+  * [if](./reference/jsx/components/if.md)
+  * [repeat](./reference/jsx/components/repeat.md)
+  * [unless](./reference/jsx/components/unless.md)
+  * [using](./reference/jsx/components/using.md)
+
+
 ### Middleware
 
+* [Using Middleware](./reference/middleware/index.md)
 * [`protectorMiddleware`](./reference/middleware/protectorMiddleware.md)
 * [`remoteDevMiddleware`](./reference/middleware/remoteDevMiddleware.md)
 * [`thunkMiddleware`](./reference/middlware/thunkMiddleware.md)
