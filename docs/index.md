@@ -60,6 +60,7 @@
 
 ### Decorators
 
+* [`@Action`](./reference/decorators/Action.md)
 * [`@Abstract`](./reference/decorators/Abstract.md)
 * [`@Attribute`](./reference/decorators/Attribute.md)
 * [`@Bind`](./reference/decorators/Bind.md)
