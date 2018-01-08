@@ -1,3 +1,21 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Abstract Component](#abstract-component)
+  - [Inheritance](#inheritance)
+  - [Component Lifecycle](#component-lifecycle)
+    - [`constructor`](#constructor)
+    - [`render`](#render)
+    - [`componentWillMount`](#componentwillmount)
+    - [`componentDidMount`](#componentdidmount)
+    - [`componentWillUnMount`](#componentwillunmount)
+  - [Component APIs](#component-apis)
+  - [Component Features](#component-features)
+  - [Events](#events)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Abstract Component
 
 Twist assumes an "abstract component" specification that is implemented by any view layer framework bindings. For example, [React Twist](https://github.com/adobe/react-twist) implements everything within this specification using React-specific code.
