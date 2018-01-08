@@ -45,6 +45,7 @@
 
 ### Core
 
+* [`AbstractComponent`](./reference/core/AbstractComponent.md) (abstract; no implementation)
 * [`BaseStore`](./reference/core/BaseStore.md)
 * [`Binder`](./reference/core/Binder.md)
 * [`CollectionBinder`](./reference/core/CollectionBinder.md)
@@ -82,6 +83,8 @@
 * Attributes
   * [as](./reference/jsx/attributes/as.md)
   * [ref](./reference/jsx/attributes/ref.md)
+  * [style](./reference/jsx/attributes/style.md)
+  * [class](./reference/jsx/attributes/class.md)
 * Components
   * [else](./reference/jsx/components/else.md)
   * [elseif](./reference/jsx/components/elseif.md)
@@ -101,18 +104,19 @@
 
 ## Bindings
 
-* [react-twist](#)
+* [react-twist](https://github.com/adobe/react-twist)
 
 ## Libraries
 
-* [babel-plugin-transform-react-twist](#)
-* [babel-plugin-transform-twist](#)
-* [eslint-plugin-twist](#)
-* [react-twist](#)
-* [react-twist-webpack-plugin](#)
-* [twist-configuration](#)
+* [babel-plugin-transform-react-twist](https://github.com/adobe/babel-plugin-transform-react-twist)
+* [babel-plugin-transform-twist](https://github.com/adobe/babel-plugin-transform-twist)
+* [eslint-plugin-twist](https://github.com/adobe/eslint-plugin-twist)
+* [react-twist](https://github.com/adobe/react-twist)
+* [react-twist-webpack-plugin](https://github.com/adobe/react-twist-webpack-plugin)
+* [twist-configuration](https://github.com/adobe/twist-configuration)
 
-## Community
+## Community and Contributing
 
-* [Contributing](./contributing.md)
-* [Contact](./contact.md)
+* [Contributing](../CONTRIBUTING.md)
+* [Code of Conduct](../CODE_OF_CONDUCT.md)
+* [Contact](../CONTACT.md)
