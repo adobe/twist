@@ -11,6 +11,7 @@
     },
     "extends": [
         "eslint:recommended",
+        "plugin:@twist/core/recommended"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -44,8 +45,6 @@
         // Semantic rules
         "eqeqeq": "error",
         "new-cap": [ "error", { "capIsNew": false } ],
-        "no-undef": "error",
-        "constructor-super": "error",
 
         // Code cleanliness
         "no-console": [ "error", { "allow": ["warn", "error"] } ]  // Just prevent console.log
