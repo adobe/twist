@@ -1,0 +1,16 @@
+{
+    "source": "./src",
+    "destination": "./api-docs",
+    "includes": ["\\.js$", "\\.jsx$"],
+    "excludes": ["\\.config\\.js$", "internal", "third_party", "^\\."],
+    "plugins": [
+        { "name": "esdoc-standard-plugin" },
+        { "name": "esdoc-jsx-plugin" },
+        { "name": "esdoc-react-plugin" },
+        { "name": "esdoc-publish-markdown-plugin" },
+        {
+            "name": "esdoc-ecmascript-proposal-plugin",
+            "option": { "all": true }
+        }
+    ]
+}
