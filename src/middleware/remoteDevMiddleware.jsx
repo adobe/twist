@@ -18,7 +18,6 @@
 
 import Disposable from '../Disposable';
 import ActionDispatcher from '../internal/state/ActionDispatcher';
-import Bind from '../decorators/Bind';
 
 var devTools = function() {
     return typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__;

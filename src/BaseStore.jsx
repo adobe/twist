@@ -14,9 +14,7 @@
 import Exportable from './internal/state/Exportable';
 import ActionDispatcher from './internal/state/ActionDispatcher';
 import StoreSerializer from './internal/state/StoreSerializer';
-import thunkMiddleware from './middleware/ThunkMiddleware';
-
-import Observable from './decorators/Observable';
+import thunkMiddleware from './middleware/thunkMiddleware';
 
 /**
  * Private data associated with a store.

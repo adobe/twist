@@ -15,8 +15,6 @@ import Filters from './internal/filters/Filters';
 import BaseTaskQueue from './internal/queue/BaseTaskQueue';
 import Logger from './internal/utils/Logger';
 
-import Prototype from './decorators/Prototype';
-
 import TaskQueue from './TaskQueue';
 import Signal from './Signal';
 import Disposable from './Disposable';
