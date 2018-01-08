@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [`<repeat>`](#repeat)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # `<repeat>`
 
 The `<repeat>` structural component allows you to iterate over the contents of a collection. There are two different ways of using `<repeat>`:

@@ -1,3 +1,14 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [ObservableSet](#observableset)
+  - [Constructor](#constructor)
+  - [Properties](#properties)
+  - [Methods](#methods)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # ObservableSet
 
 `ObservableSet` is an observable wrapper over a JavaScript [`Set`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set). It allows Twist to detect when the contents of the set changes, so that reactivity works as expected.

@@ -1,3 +1,13 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [State Management](#state-management)
+  - [Decoupling Models from Views](#decoupling-models-from-views)
+  - [Sharing State with Scopes](#sharing-state-with-scopes)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # State Management
 
 Components are great for building UI components and managing the view layer of your application. But what about the application's _state_? Keeping state in UI components is generally a bad idea, unless that state is tightly coupled to the view - for example, it's good to store the "checked" state of a checkbox inside the control, but it's bad to store the details of the logged in user.

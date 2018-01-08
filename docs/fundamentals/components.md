@@ -1,3 +1,15 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Components](#components)
+  - [A simple Twist component](#a-simple-twist-component)
+  - [Internal State](#internal-state)
+  - [Attributes](#attributes)
+    - [TODO:](#todo)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Components
 
 Most modern UI frameworks (React, Vue, etc.) have the concept of **components**. A component, in short, is just an encapsulated bit of logic that interacts with and optionally renders a mapping of your app's state. You can combine (compose) these components together into interesting and complex user interfaces, while also gaining the benefits of modularity and reusability.

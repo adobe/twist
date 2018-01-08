@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Middleware](#middleware)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Middleware
 
 When you create a store, you can also pass in a _middleware_ argument to the constructor. This is just an array of functions of the form:

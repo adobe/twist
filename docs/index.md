@@ -9,6 +9,7 @@
   - [Reference](#reference)
     - [Core](#core)
     - [Decorators](#decorators)
+    - [JSX](#jsx)
     - [Middleware](#middleware)
   - [Bindings](#bindings)
   - [Libraries](#libraries)

@@ -1,3 +1,18 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [State Containers](#state-containers)
+  - [Stores](#stores)
+  - [Actions](#actions)
+  - [Connecting Model and View](#connecting-model-and-view)
+  - [Stores and Two-Way Data Binding](#stores-and-two-way-data-binding)
+  - [Mutable Stores](#mutable-stores)
+  - [Derived State](#derived-state)
+  - [Stores and Components](#stores-and-components)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # State Containers
 
 There are two core notions in Twist, which are borrowed from Redux: **stores**, and **actions**.

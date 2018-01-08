@@ -1,3 +1,12 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [`ref`](#ref)
+  - [Usage Subtleties](#usage-subtleties)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # `ref`
 
 The `ref` attribute is used to access the underlying DOM element of a primitive component, or the instance of a custom component. It assigns this to the variable or expression that you pass in - for example, `ref={ this.element }` will bind the DOM element or component instance to the `this.element`.

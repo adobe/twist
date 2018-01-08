@@ -3,6 +3,9 @@
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [Observables](#observables)
+  - [Bindings](#bindings)
+  - [Reactivity](#reactivity)
+  - [Non-primitive fields](#non-primitive-fields)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

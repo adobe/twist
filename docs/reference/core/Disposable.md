@@ -1,3 +1,12 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Disposable](#disposable)
+  - [Instance Methods](#instance-methods)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Disposable
 
 `Disposable` is a very common base class in Twist - [`SignalDispatcher`](./SignalDispatcher.md) and [`Component`](#../decorators/component.md) all inherit from it. It provides a `dispose()` method, which can handle cleaning up of resources after the object is no longer needed, and methods for linking other disposable objects to it. Anything "linked" will also be disposed when the containing object is disposed.

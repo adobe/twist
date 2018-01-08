@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Thunk Middleware](#thunk-middleware)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Thunk Middleware
 
 This allows you to have _asynchronous_ actions. The action handlers on a store that you define with `@Action` must be synchronous, but there's nothing stopping you from composing more complex actions that are asynchronous - so long as all the state mutations are described in terms of simple synchronous actions.

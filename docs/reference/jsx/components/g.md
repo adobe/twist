@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [`<g>`](#g)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # `<g>`
 
 The `<g>` structural component is used to group multiple components together, to work around the restriction that a JSX expression can only evaluate to a single component. Since it's a virtual component, it doesn't correspond to anything in the DOM.

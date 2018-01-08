@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [@Cache](#cache)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # @Cache
 
 The `@Cache` decorator lets you modify a getter so that it caches the result of executing the getter in an intermediate observable (under the hood). This intermediate observable will get updated only when any observables that the getter depends on are changed. This is useful if the computation in the getter is expensive.

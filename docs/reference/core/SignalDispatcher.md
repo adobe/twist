@@ -1,3 +1,12 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [SignalDispatcher](#signaldispatcher)
+  - [Instance Methods](#instance-methods)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # SignalDispatcher
 
 `SignalDispatcher` is a useful base class for objects that need to implement reactivity and dispatch and handle events. For example, [`Component`](#../decorators/component) inherits from `SignalDispatcher`.

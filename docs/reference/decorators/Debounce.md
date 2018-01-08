@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [@Debounce](#debounce)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # @Debounce
 
 The `@Debounce` decorator is used to delay the application of a method for a given number of milliseconds, after it is invoked. This provides the same functionality as the [Lodash Debounce](https://lodash.com/docs/4.17.2#debounce) utility.

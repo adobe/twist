@@ -1,3 +1,14 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [ObservableArray](#observablearray)
+  - [Constructor](#constructor)
+  - [Properties](#properties)
+  - [Methods](#methods)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # ObservableArray
 
 `ObservableArray` is an observable wrapper over JavaScript arrays. It allows Twist to know when the contents of the array changes, so that any bindings can be invalidated and reevaluated.

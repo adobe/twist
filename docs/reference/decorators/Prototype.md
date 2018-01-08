@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [@Prototype](#prototype)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # @Prototype
 
 The `@Prototype` decorator lets you attach properties and methods to the [prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/prototype) of a class. The decorator takes an object as an argument, and attaches

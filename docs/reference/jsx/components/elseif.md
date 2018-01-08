@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [`<elseif>`](#elseif)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # `<elseif>`
 
 The `<elseif>` structural component allows you to create a sequence of conditional statements, rather than nesting multiple `<if>` and `<else>` conditionals:

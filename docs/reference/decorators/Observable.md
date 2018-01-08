@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [@Observable](#observable)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # @Observable
 
 The `@Observable` decorator allows Twist to observe a property of a class. Under the hood, this sets up a getter and setter for the property, so that Twist can track which expressions depend on it, and when it changes. 

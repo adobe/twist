@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [DevTools Middleware](#devtools-middleware)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # DevTools Middleware
 
 [Redux-devtools-extension](https://github.com/zalmoxisus/redux-devtools-extension) is a browser plugin for Chrome/Firefox (and also Electron), that was built for debugging Redux applications. Twist comes bundled with middleware for connecting to this, so it's really easy to debug your store. Just pass in the middleware when creating your store:

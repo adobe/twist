@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [`<using>`](#using)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # `<using>`
 
 The `<using>` structural component is a mechanism for creating variables in JSX. This allows you to create aliases for more complex expressions. It takes two attributes:

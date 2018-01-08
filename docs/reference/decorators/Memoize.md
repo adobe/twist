@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [@Memoize](#memoize)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # @Memoize
 
 The `@Memoize` decorator lets you modify a getter so that it caches the result of executing the getter, and returns that on subsequent calls. This is a nice shortcut for implementing the singleton pattern. Note that if the getter has side effects, or you expect the data it returns to change, you should _not_ memoize it.

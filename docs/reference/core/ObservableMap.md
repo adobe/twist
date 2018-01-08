@@ -1,3 +1,14 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [ObservableMap](#observablemap)
+  - [Constructor](#constructor)
+  - [Properties](#properties)
+  - [Methods](#methods)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # ObservableMap
 
 `ObservableMap` is an observable wrapper over a JavaScript [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map). It allows Twist to detect when the contents of the map changes, so that reactivity can work as expected.
