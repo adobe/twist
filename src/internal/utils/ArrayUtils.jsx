@@ -14,7 +14,7 @@
 function arrayFindImpl(fn, thisArg) {
     for (let i = 0, len = this.length; i < len; i++) {
         const item = this[i];
-        if (fn.call(thisArg, item, i)) {
+        if (fn.call(thisArg, item, i, this)) {
             return item;
         }
     }
