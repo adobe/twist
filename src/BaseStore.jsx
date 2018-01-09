@@ -16,6 +16,8 @@ import ActionDispatcher from './internal/state/ActionDispatcher';
 import StoreSerializer from './internal/state/StoreSerializer';
 import thunkMiddleware from './middleware/thunkMiddleware';
 
+import Observable from './decorators/Observable';
+
 /**
  * Private data associated with a store.
  *

@@ -15,6 +15,8 @@ import ObservableBase from './internal/ObservableBase';
 import Binder from './Binder';
 import Signal from './Signal';
 
+import Bind from './decorators/Bind';
+
 export default class CollectionBinder extends Binder {
 
     update(value, invokeCallback = true) {
