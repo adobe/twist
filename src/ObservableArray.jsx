@@ -38,7 +38,7 @@ export default class ObservableArray extends ObservableBase {
     /**
      * Proxy method for accessing array elements by index
      *
-     * @param {number} index Index number of element to access
+     * @param {number} i Index number of element to access
      */
     at(i) {
         Binder.active && Binder.recordEvent(this, 'change');
@@ -48,7 +48,7 @@ export default class ObservableArray extends ObservableBase {
     /**
      * Sets the element at a given index to provided value
      *
-     * @param {number} index The index of the element to set in the array
+     * @param {number} i The index of the element to set in the array
      * @param value The value to set the element as
      */
     setAt(i, value) {
@@ -133,8 +133,8 @@ export default class ObservableArray extends ObservableBase {
      *
      * @param {Array|ObservableArray...} otherArrays
      */
-    concatToArray() {
-        return this.concat.apply(this, arguments).base;
+    concatToArray(...otherArrays) {
+        return this.concat.apply(this, otherArrays).base;
     }
 
     /**

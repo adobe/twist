@@ -46,7 +46,7 @@ export default class ObservableMap extends ObservableBase {
     /**
      * Replaces the Map wrapped by ObservableMap
      *
-     * @param {Map|Object} base The new Map or Object used to replace the ObservableMap's contents
+     * @param {Map|Object} items The new Map or Object used to replace the ObservableMap's contents
      */
     swapItems(items) {
         this._swapItems(items);
