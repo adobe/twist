@@ -4,7 +4,7 @@ Indicate what the changes in this PR accomplish -- whether to fix a bug, introdu
 
 ### Checklist
 
-- [ ] I've read the [contribution guidelines](./CONTIBUTING.md) and the [Code of Conduct](./CODE_OF_CONDUCT.md)
+- [ ] I've read the [contribution guidelines](./CONTRIBUTING.md) and the [Code of Conduct](./CODE_OF_CONDUCT.md)
 - [ ] An issue has been created for this PR
 - [ ] Title begins with one of the following: `Fix:`, `Update:`, `Breaking:`, or `New:`
 - [ ] Title ends with a reference to the related issue(s): `(fixes #issue)` or `(refs #issue)`

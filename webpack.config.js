@@ -15,14 +15,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
+const TwistConfiguration = require('@twist/configuration');
 
 const isProduction = process.env.NODE_ENV === 'production';
 const browserTargets = 'last 2 versions';
 
-// TODO: We should use the proper base class for the TwistConfiguration, rather than hacking this here
-const TwistConfiguration = require('./babel/TwistConfiguration');
-const config = new TwistConfiguration()
-    .addLibrary(__dirname);
+// Load the Twist configuration (this reads our .twistrc file)
+const config = new TwistConfiguration();
 
 if (process.env.NODE_ENV === 'test') {
     config.addBabelPlugin('istanbul');

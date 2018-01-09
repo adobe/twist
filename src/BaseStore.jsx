@@ -14,7 +14,7 @@
 import Exportable from './internal/state/Exportable';
 import ActionDispatcher from './internal/state/ActionDispatcher';
 import StoreSerializer from './internal/state/StoreSerializer';
-import thunkMiddleware from './middleware/ThunkMiddleware';
+import thunkMiddleware from './middleware/thunkMiddleware';
 
 import Observable from './decorators/Observable';
 

@@ -1,0 +1,18 @@
+{
+    "decorators": [
+        "Abstract",
+        "Action",
+        "Bind",
+        "Cache",
+        "Debounce",
+        "Delay",
+        "Memoize",
+        "Observable",
+        "Prototype",
+        "State",
+        [ "Store", { "inherits": "BaseStore" } ],
+        "Task",
+        "Throttle",
+        "Wrap"
+    ]
+}
