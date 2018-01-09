@@ -14,6 +14,8 @@
 /* global it, describe */
 
 import assert from 'assert';
+import sinon from 'sinon';
+import { SignalDispatcher, TaskQueue, Binder } from '../../index';
 
 describe('@Cache decorator', () => {
 
@@ -78,132 +80,96 @@ describe('@Cache decorator', () => {
         assert.equal(error && error.message, '@Cache can only be used on a Disposable class.');
     });
 
-    // TODO: These tests can't depend on components:
+    it('Cache decorator - should update when binding changes', () => {
 
-    // it('Cache decorator - should update when binding changes', () => {
-    //
-    //     let cacheUpdateCount = 0;
-    //
-    //     @Component
-    //     class TestComponent {
-    //
-    //         @Attribute value = 4;
-    //
-    //         @Cache
-    //         get cachedValue() {
-    //             cacheUpdateCount++;
-    //             return 2 * this.value;
-    //         }
-    //
-    //         render() {
-    //             return <g>{ this.cachedValue }{ this.cachedValue + 1 }</g>;
-    //         }
-    //     }
-    //
-    //     let componentRef;
-    //     let test = Test.jsx(() => <TestComponent ref={ componentRef } />);
-    //
-    //     assert.equal(test.node.firstChild.textContent, '8');
-    //     assert.equal(test.node.lastChild.textContent, '9');
-    //     assert.equal(cacheUpdateCount, 1);
-    //
-    //     componentRef.value++;
-    //     assert.equal(cacheUpdateCount, 1);
-    //     TaskQueue.run();
-    //
-    //     assert.equal(test.node.firstChild.textContent, '10');
-    //     assert.equal(test.node.lastChild.textContent, '11');
-    //     assert.equal(cacheUpdateCount, 2);
-    //
-    //     test.dispose();
-    // });
+        let cacheUpdateCount = 0;
 
-    // it('Cache decorator - should update eagerly when binding changes, if there\'s a Binder.mutator', () => {
-    //
-    //     let mutator = {
-    //         record: sinon.spy()
-    //     };
-    //     Binder.pushMutator(mutator);
-    //
-    //     let cacheUpdateCount = 0;
-    //
-    //     @Component
-    //     class TestComponent {
-    //
-    //         @Attribute value = 4;
-    //
-    //         @Cache
-    //         get cachedValue() {
-    //             cacheUpdateCount++;
-    //             return Math.min(2 * this.value, 10);
-    //         }
-    //
-    //         render() {
-    //             return <g>{ this.cachedValue }{ this.cachedValue + 1 }</g>;
-    //         }
-    //     }
-    //
-    //     let componentRef;
-    //     let test = Test.jsx(() => <TestComponent ref={ componentRef } />);
-    //
-    //     assert.equal(test.node.firstChild.textContent, '8');
-    //     assert.equal(test.node.lastChild.textContent, '9');
-    //     assert.equal(cacheUpdateCount, 1);
-    //
-    //     componentRef.value++;
-    //     assert.equal(cacheUpdateCount, 2);
-    //     TaskQueue.run();
-    //
-    //     assert.equal(test.node.firstChild.textContent, '10');
-    //     assert.equal(test.node.lastChild.textContent, '11');
-    //     assert.equal(cacheUpdateCount, 2);
-    //
-    //     componentRef.value++;
-    //     assert.equal(cacheUpdateCount, 3);
-    //     TaskQueue.run();
-    //
-    //     assert.equal(test.node.firstChild.textContent, '10');
-    //     assert.equal(test.node.lastChild.textContent, '11');
-    //     assert.equal(cacheUpdateCount, 3);
-    //
-    //     assert.equal(mutator.record.callCount, 3);
-    //     Binder.popMutator(mutator);
-    //
-    //     test.dispose();
-    // });
+        class Test extends SignalDispatcher {
 
-    // it('Cache decorator - should be able to watch cached getter', () => {
-    //
-    //     @Component({ events: [ 'change' ] })
-    //     class TestComponent {
-    //
-    //         @Attribute value = 4;
-    //
-    //         constructor() {
-    //             super();
-    //             this.watch(() => this.cachedValue, newValue => this.trigger('change', newValue));
-    //         }
-    //
-    //         @Cache
-    //         get cachedValue() {
-    //             return 2 * this.value;
-    //         }
-    //     }
-    //
-    //     let callback = sinon.spy();
-    //
-    //     let componentRef;
-    //     let test = Test.jsx(() => <TestComponent ref={ componentRef } on-change={ callback() } />);
-    //
-    //     componentRef.value++;
-    //     TaskQueue.run();
-    //
-    //     componentRef.value++;
-    //     TaskQueue.run();
-    //
-    //     assert.equal(callback.callCount, 2);
-    //
-    //     test.dispose();
-    // });
+            constructor() {
+                super();
+                this.watch(() => this.cachedValue, v => this.value1 = v);
+                this.watch(() => this.cachedValue + 1, v => this.value2 = v);
+            }
+
+            @Observable value = 4;
+
+            @Cache
+            get cachedValue() {
+                cacheUpdateCount++;
+                return 2 * this.value;
+            }
+        }
+
+        let test = new Test();
+
+        assert.equal(test.value1, 8);
+        assert.equal(test.value2, 9);
+        assert.equal(cacheUpdateCount, 1);
+
+        test.value++;
+        assert.equal(cacheUpdateCount, 1);
+        TaskQueue.run();
+
+        assert.equal(test.value1, 10);
+        assert.equal(test.value2, 11);
+        assert.equal(cacheUpdateCount, 2);
+
+        test.dispose();
+    });
+
+    it('Cache decorator - should update eagerly when binding changes, if there\'s a Binder.mutator', () => {
+
+        let mutator = {
+            record: sinon.spy()
+        };
+        Binder.pushMutator(mutator);
+
+        let cacheUpdateCount = 0;
+
+        class Test extends SignalDispatcher {
+
+            constructor() {
+                super();
+                this.watch(() => this.cachedValue, v => this.value1 = v);
+                this.watch(() => this.cachedValue + 1, v => this.value2 = v);
+            }
+
+            @Observable value = 4;
+
+            @Cache
+            get cachedValue() {
+                cacheUpdateCount++;
+                return Math.min(2 * this.value, 10);
+            }
+        }
+
+        let test = new Test();
+
+        assert.equal(test.value1, 8);
+        assert.equal(test.value2, 9);
+        assert.equal(cacheUpdateCount, 1);
+
+        test.value++;
+        assert.equal(cacheUpdateCount, 2);
+        TaskQueue.run();
+
+        assert.equal(test.value1, 10);
+        assert.equal(test.value2, 11);
+        assert.equal(cacheUpdateCount, 2);
+
+        test.value++;
+        assert.equal(cacheUpdateCount, 3);
+        TaskQueue.run();
+
+        assert.equal(test.value1, 10);
+        assert.equal(test.value2, 11);
+        assert.equal(cacheUpdateCount, 3);
+
+        assert.equal(mutator.record.callCount, 3);
+        Binder.popMutator(mutator);
+
+        test.dispose();
+    });
 
 });
