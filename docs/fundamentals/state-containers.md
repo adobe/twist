@@ -129,7 +129,7 @@ class MyMainView {
     render() {
         return <g>
             <div>{ this.store.user.fullName }</div>
-            <button on-click={ this.knight() }>Make Knight</button>
+            <button onClick={ () => this.knight() }>Make Knight</button>
         </g>;
     }
 }

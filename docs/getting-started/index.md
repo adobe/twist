@@ -9,7 +9,7 @@
 
 # Introduction to Twist
 
-Twist is a state management and container library for JavaScript. It melds some of the best ideas from both [Mobx](http://mobx.js.org) and [Redux](http://redux.js.org/). It is inspired by Mobx's **observables** and **mutable state**, while also using Redux's concepts of **stores** and **actions** to ensure a single pipeline through which state can be mutated. The former mutability allows for an extremely fast and performant state library, while the latter ensures that state is easily managed and tracked (including with time-travelling debugigng tools). Twist also approaches front end development from the _state_ first, rather than the _view layer_ first, as is typical with many other frameworks. Twist has bindings for React now, and the community is invited to work on bindings for other frameworks.
+Twist is a state management and container library for JavaScript. It melds some of the best ideas from both [Mobx](http://mobx.js.org) and [Redux](http://redux.js.org/). It is inspired by Mobx's **observables** and **mutable state**, while also using Redux's concepts of **stores** and **actions** to ensure a single pipeline through which state can be mutated. The former mutability allows for an extremely fast and performant state library, while the latter ensures that state is easily managed and tracked (including with time-travelling debugging tools). Twist also approaches front end development from the _state_ first, rather than the _view layer_ first, as is typical with many other frameworks. Twist has bindings for React now, and the community is invited to work on bindings for other frameworks.
 
 Twist makes it incredibly easy to create performant, scaleable stateful applications. Twist makes it easy to:
 
