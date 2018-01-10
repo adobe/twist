@@ -13,5 +13,5 @@ before_script:
   - sh -e /etc/init.d/xvfb start
 
 script:
-  - npm run linter
-  - npm run test
+  - yarn run linter
+  - yarn run test

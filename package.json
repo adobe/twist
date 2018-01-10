@@ -16,8 +16,8 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@twist/configuration": "adobe/twist-configuration",
-    "@twist/eslint-plugin-core": "adobe/eslint-plugin-twist",
+    "@twist/configuration": "0.1.0",
+    "@twist/eslint-plugin-core": "0.1.0",
     "autoprefixer": "6.4.0",
     "babel-eslint": "7.2.3",
     "babel-loader": "7.x.x",
