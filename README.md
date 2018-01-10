@@ -61,11 +61,11 @@ If you want to use both the state-management and component layers of Twist, you'
 
 * `@twist/core` - This includes support for stores, data binding, and application state management.
 * `@twist/react` - The React implementation of Twist components.
-* `@twist/webpack-plugin` - A [webpack](https://webpack.js.org/) plugin that compiles Twist files (Twist has its own Babel transform that runs before React's).
+* `@twist/react-webpack-plugin` - A [webpack](https://webpack.js.org/) plugin that compiles Twist files (Twist has its own Babel transform that runs before React's).
 
 If you're not using webpack, you can also get hold of the Babel configuration directly, using [`@twist/configuration`](https://github.com/adobe/twist-configuration) (this is done automatically by the webpack plugin).
 
-After that, the only thing you need is a `.twistrc` file in the root of your project, that tells Twist which libraries to include (this is also used by the [Twist eslint plugin](https://github.com/adobe/eslint-plugin-twist)). There are a number of advanced options, but to get up and running, you just need to tell Twist that you're using React-Twist:
+After that, the only thing you need is a `.twistrc` file in the root of your project, that tells Twist which libraries to include (this is also used by the [Twist ESLint plugin](https://github.com/adobe/eslint-plugin-twist)). There are a number of advanced options, but to get up and running, you just need to tell Twist that you're using React-Twist:
 
 ```json
 {
