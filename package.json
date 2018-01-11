@@ -12,7 +12,9 @@
     "linter": "eslint --ext .js,.jsx .",
     "linter:fix": "eslint --ext .js,.jsx . --fix",
     "docs:toc": "doctoc docs",
-    "docs:api": "esdoc"
+    "docs:api": "esdoc",
+    "preversion": "npm run linter && npm run test",
+    "postversion": "git push && git push --tags"
   },
   "dependencies": {},
   "devDependencies": {
@@ -51,6 +53,9 @@
     "style-loader": "0.13.2",
     "webpack": "3.4.1",
     "webpack-dev-server": "2.6.1"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "nyc": {
     "exclude": [
