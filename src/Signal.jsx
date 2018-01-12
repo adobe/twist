@@ -11,17 +11,18 @@
  *
  */
 
-/** @private */
-export var SignalsProperty = '_signals';
+const _signals = Symbol('signals');
+const _owner = Symbol('owner');
 
-const Owner = Symbol('owner');
+/** @private Needed by SignalDispatcher */
+export var SignalsProperty = _signals;
 
 export default class Signal {
 
-    [Owner];
+    [_owner];
 
     constructor(owner) {
-        this[Owner] = owner;
+        this[_owner] = owner;
         this.handlers = [];
     }
 
@@ -39,7 +40,7 @@ export default class Signal {
 
     trigger() {
         var handlers = this.handlers.slice();
-        var owner = this[Owner];
+        var owner = this[_owner];
         for (var i = 0, l = handlers.length; i < l; ++i) {
             var handler = handlers[i];
             handler.apply(owner, arguments);
@@ -48,7 +49,7 @@ export default class Signal {
 
     triggerNoArgs() {
         var handlers = this.handlers.slice();
-        var owner = this[Owner];
+        var owner = this[_owner];
         for (var i = 0, l = handlers.length; i < l; ++i) {
             handlers[i].call(owner);
         }
@@ -56,7 +57,7 @@ export default class Signal {
 
     triggerWithArray(args) {
         var handlers = this.handlers.slice();
-        var owner = this[Owner];
+        var owner = this[_owner];
         for (var i = 0, l = handlers.length; i < l; ++i) {
             var handler = handlers[i];
             handler.apply(owner, args);
@@ -64,8 +65,8 @@ export default class Signal {
     }
 
     static trigger(obj, name) {
-        var signals = obj._signals;
-        if (!signals || signals[Owner] !== obj) {
+        var signals = obj[_signals];
+        if (!signals || signals[_owner] !== obj) {
             return;
         }
 
@@ -80,8 +81,8 @@ export default class Signal {
     }
 
     static triggerNoArgs(obj, name) {
-        var signals = obj._signals;
-        if (!signals || signals[Owner] !== obj) {
+        var signals = obj[_signals];
+        if (!signals || signals[_owner] !== obj) {
             return;
         }
 
@@ -96,12 +97,12 @@ export default class Signal {
     }
 
     static on(obj, name, handler) {
-        var signals = obj._signals;
+        var signals = obj[_signals];
 
-        if (!signals || signals[Owner] !== obj) {
+        if (!signals || signals[_owner] !== obj) {
             signals = {};
-            signals[Owner] = obj;
-            Object.defineProperty(obj, SignalsProperty, {
+            signals[_owner] = obj;
+            Object.defineProperty(obj, _signals, {
                 enumerable: false,
                 configurable: false,
                 value: signals
@@ -119,8 +120,8 @@ export default class Signal {
     }
 
     static off(obj, name, handler) {
-        var signals = obj._signals;
-        if (!signals || signals[Owner] !== obj) {
+        var signals = obj[_signals];
+        if (!signals || signals[_owner] !== obj) {
             return;
         }
 
@@ -165,5 +166,4 @@ export default class Signal {
             --l;
         }
     }
-
 }

@@ -40,7 +40,7 @@ export default class SignalDispatcher extends Disposable {
             return;
         }
 
-        var hiddenKey = '_' + key;
+        var hiddenKey = Symbol(key);
         this[hiddenKey] = defaultValue;
 
         var self = this;

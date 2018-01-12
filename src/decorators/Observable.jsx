@@ -18,7 +18,9 @@ const binderRecordChange = Binder.recordChange;
 const PropertyDefaultValue = { defaultValue: true };
 
 export default function Observable(target, property, descriptor) {
-    const hiddenKey = '_' + property;
+    // Note: We use Symbol.for so that the same property name has the same symbol, because we
+    // need to check the superclass if the observable was already defined.
+    const hiddenKey = Symbol.for('observable.' + property);
 
     const init = descriptor.initializer;
     if (init) {

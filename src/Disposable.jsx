@@ -22,6 +22,9 @@ function disposeHelper(disposable) {
     }
 }
 
+const _disposables = Symbol('disposables');
+const _isDisposed = Symbol('isDisposed');
+
 /**
  * A Disposable instance exposes an interface for cleaning up an object when it is no longer needed.
  * A disposable can be linked to any number of children disposables, so that when the parent is disposed,
@@ -29,15 +32,24 @@ function disposeHelper(disposable) {
  */
 export default class Disposable {
 
+    [_isDisposed] = false;
+
+    /**
+     * Whether or not the disposable object has already been disposed
+     */
+    get isDisposed() {
+        return this[_isDisposed];
+    }
+
     /**
      * Link a child Disposable to this disposable. When this class is disposed, the child will also be disposed.
      * @param {Disposable} disposable
      * @return {Disposable} the provided disposable
      */
     link(disposable) {
-        var disposables = this._disposables;
+        var disposables = this[_disposables];
         if (!disposables) {
-            disposables = this._disposables = [];
+            disposables = this[_disposables] = [];
         }
         disposables.push(disposable);
         return disposable;
@@ -48,7 +60,7 @@ export default class Disposable {
      * @param {Disposable} disposable
      */
     unlink(disposable) {
-        var disposables = this._disposables;
+        var disposables = this[_disposables];
         if (!disposables) {
             return;
         }
@@ -72,14 +84,14 @@ export default class Disposable {
      * Dispose this instance. Any disposables linked to this instance will also be disposed.
      */
     dispose() {
-        this.isDisposed = true;
+        this[_isDisposed] = true;
 
-        var disposables = this._disposables;
+        var disposables = this[_disposables];
         if (!disposables) {
             return;
         }
 
-        this._disposables = null;
+        this[_disposables] = null;
         for (var i = disposables.length - 1; i >= 0; --i) {
             disposeHelper(disposables[i]);
         }
