@@ -60,7 +60,7 @@
   "nyc": {
     "exclude": [
       "test/**/*.*",
-      "babel-test/**/*.*"
+      "src/third_party/**/*.*"
     ]
   }
 }

@@ -52,8 +52,8 @@ export default class ObservableArray extends ObservableBase {
      * @param value The value to set the element as
      */
     setAt(i, value) {
-        Signal.trigger(this, 'change');
         this.base[i] = value;
+        Signal.trigger(this, 'change');
     }
 
     /**

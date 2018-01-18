@@ -38,19 +38,19 @@ export default function(target, property, descriptor) {
         throw new Error('@Cache can only be used on a Disposable class.');
     }
 
-    const hiddenKey = '_' + property;
-    const binderKey = '_binder_' + property;
+    const _hiddenKey = Symbol(property);
+    const _binderKey = Symbol('binder.' + property);
 
     const onInvalidate = function() {
         if (Binder.mutator) {
             // If somebody is listening to the mutations, we need to eagerly compute the new value,
             // otherwise we could do it lazily.
-            const oldValue = this[hiddenKey];
-            const value = this[binderKey].get();
+            const oldValue = this[_hiddenKey];
+            const value = this[_binderKey].get();
             if (oldValue === value) {
                 return;
             }
-            this[hiddenKey] = value;
+            this[_hiddenKey] = value;
 
             binderRecordChange(this, property, value, oldValue);
             return;
@@ -64,21 +64,21 @@ export default function(target, property, descriptor) {
 
     descriptor.get = function() {
         Binder.active && binderRecordEvent(this, property);
-        let binder = this[binderKey];
+        let binder = this[_binderKey];
 
         if (!binder) {
             // Create a new binder: This always executes the getter immediately, so we just read it back
             // from the previousValue. For future updates, we'll get called when the binder is invalidated.
             const getter = fn.bind(this);
             binder = this.link(new Binder(getter, undefined, true, onInvalidate.bind(this), undefined, this));
-            this[binderKey] = binder;
-            this[hiddenKey] = binder.previousValue;
+            this[_binderKey] = binder;
+            this[_hiddenKey] = binder.previousValue;
         }
 
         if (binder.dirty) {
-            this[hiddenKey] = binder.get();
+            this[_hiddenKey] = binder.get();
         }
 
-        return this[hiddenKey];
+        return this[_hiddenKey];
     };
 }

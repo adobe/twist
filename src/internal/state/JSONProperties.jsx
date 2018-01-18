@@ -50,7 +50,7 @@ export default class JSONProperties {
     }
 
     add(name, fromJSON, toJSON, defaultValue, config) {
-        var key = '_' + name;
+        var key = Symbol('state.' + name);
         this.properties.push({
             name,
             key,
