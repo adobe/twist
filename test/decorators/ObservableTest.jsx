@@ -139,4 +139,25 @@ describe('Observable Decorator', () => {
             }, 0);
     });
 
+    it('should not invalidate binders if change a NaN to a NaN', () => {
+        class Data {
+            @Observable value = 42;
+        }
+
+        let data = new Data;
+        let invalidateCount = 0;
+        new Binder(() => data.value, undefined, true, () => invalidateCount++);
+
+        assert.equal(invalidateCount, 0);
+
+        data.value = 0;
+        assert.equal(invalidateCount, 1);
+
+        data.value = NaN;
+        assert.equal(invalidateCount, 2);
+
+        data.value = NaN;
+        assert.equal(invalidateCount, 2);
+    });
+
 });

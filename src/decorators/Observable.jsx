@@ -83,7 +83,10 @@ export default function Observable(target, property, descriptor) {
             if (oldValue === PropertyDefaultValue) {
                 oldValue = this[hiddenKey] = init.call(this);
             }
-            if (oldValue === value) {
+            // If the values are the same don't notify anyone
+            // Note: Since in JavaScript NaN !== NaN, we have to separately test the case
+            // when they're both NaN's, by seeing if they're not equal to themselves.
+            if (oldValue === value || (oldValue !== oldValue && value !== value)) {
                 return;
             }
             this[hiddenKey] = value;
