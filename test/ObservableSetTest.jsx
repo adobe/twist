@@ -14,7 +14,7 @@
 /* global describe it */
 
 import assert from 'assert';
-import { ObservableSet, Binder, TaskQueue } from '../index';
+import { ObservableSet, Binder, TaskQueue } from '@twist/core';
 
 describe('Utils.ObservableSet', () => {
 

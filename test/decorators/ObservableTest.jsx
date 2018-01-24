@@ -14,7 +14,7 @@
 /* global describe it */
 
 import assert from 'assert';
-import { Binder, Signal, TaskQueue } from '../../index';
+import { Binder, Signal, TaskQueue } from '@twist/core';
 
 describe('Observable Decorator', () => {
 

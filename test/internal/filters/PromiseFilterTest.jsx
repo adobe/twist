@@ -13,7 +13,7 @@
 
 /* global describe it */
 
-import { Binder, TaskQueue } from '../../index';
+import { Binder, TaskQueue } from '@twist/core';
 import assert from 'assert';
 
 class Deferred {

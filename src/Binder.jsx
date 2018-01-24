@@ -193,7 +193,10 @@ export default class Binder extends Disposable {
 
     update(value, invokeCallback = true) {
         var previousValue = this.previousValue;
-        if (previousValue === FirstExecutionMarker || previousValue !== value) {
+        // Only invoke the watch callback if the value actually changed
+        // Note: Since in JavaScript NaN !== NaN, we have to separately test the case
+        // when they're both NaN's, by seeing if they're not equal to themselves.
+        if (previousValue === FirstExecutionMarker || (previousValue !== value && (previousValue === previousValue || value === value))) {
             this.previousValue = value;
             if (invokeCallback) {
                 this.callback(value);

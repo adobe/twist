@@ -13,8 +13,8 @@
 
 /* global describe it */
 
-import { Signal, Binder, TaskQueue } from '../../index';
-import Filters from '../../src/internal/filters/Filters';
+import { Signal, Binder, TaskQueue } from '@twist/core';
+import Filters from '../../../src/internal/filters/Filters';
 import assert from 'assert';
 
 describe('Bindings.Filters', () => {

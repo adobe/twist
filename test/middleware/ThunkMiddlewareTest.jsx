@@ -16,7 +16,7 @@
 import assert from 'assert';
 import sinon from 'sinon';
 
-import { Signal } from '../../index';
+import { Signal } from '@twist/core';
 
 describe('Thunk Middleware', () => {
 

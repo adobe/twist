@@ -13,7 +13,7 @@
 
 /* global describe it */
 
-import { Disposable } from '../index';
+import { Disposable } from '@twist/core';
 import assert from 'assert';
 import sinon from 'sinon';
 

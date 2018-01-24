@@ -15,7 +15,7 @@
 
 import assert from 'assert';
 import sinon from 'sinon';
-import { SignalDispatcher, TaskQueue, Binder } from '../../index';
+import { SignalDispatcher, TaskQueue, Binder } from '@twist/core';
 
 describe('@Cache decorator', () => {
 

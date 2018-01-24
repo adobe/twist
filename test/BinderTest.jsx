@@ -13,7 +13,7 @@
 
 /* global describe it */
 
-import { Binder, TaskQueue } from '../../index';
+import { Binder, TaskQueue } from '@twist/core';
 import assert from 'assert';
 import sinon from 'sinon';
 
@@ -37,6 +37,33 @@ describe('Bindings.Binder', () => {
 
         assert.equal(callback.callCount, 2, 'The binder callback should trigger a second time after we push a new item.');
         assert.equal(callback.getCall(1).args[0], 'second value');
+    });
+
+    it('detect property change - should not trigger if expression value unchanged', () => {
+        class X {
+            @Observable num;
+            @Observable denom;
+        }
+        let x = new X;
+        x.num = 2;
+        x.denom = 4;
+
+        let callback = sinon.spy();
+        new Binder(() => x.num / x.denom, callback);
+
+        assert.equal(callback.callCount, 1, 'The binder callback should trigger.');
+        assert.equal(callback.getCall(0).args[0], 0.5);
+
+        x.num = 2;
+        x.denom = undefined;
+        TaskQueue.run();
+        assert.equal(callback.callCount, 2, 'The binder callback should trigger a second time after we modify the value.');
+        let arg = callback.getCall(1).args[0];
+        assert(isNaN(arg) && arg !== arg, 'should be a NaN');
+
+        x.num = 3;
+        TaskQueue.run();
+        assert.equal(callback.callCount, 2, 'The binder should not trigger, since it is still a NaN.');
     });
 
     it('detect property change - bind to getter/setter', () => {

@@ -13,7 +13,7 @@
 
 /* global describe it */
 
-import { Signal } from '../../index';
+import { Signal } from '@twist/core';
 import assert from 'assert';
 
 describe('Bindings.Signal', () => {

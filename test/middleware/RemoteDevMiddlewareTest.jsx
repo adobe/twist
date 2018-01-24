@@ -16,7 +16,7 @@
 import assert from 'assert';
 import sinon from 'sinon';
 
-import { remoteDevMiddleware } from '../../index';
+import { remoteDevMiddleware } from '@twist/core';
 
 /**
     Mocking the devtools interface

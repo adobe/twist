@@ -13,7 +13,7 @@
 
 /* global describe it */
 
-import { ObservableArray, SignalDispatcher, TaskQueue } from '../index';
+import { ObservableArray, SignalDispatcher, TaskQueue } from '@twist/core';
 import assert from 'assert';
 import sinon from 'sinon';
 

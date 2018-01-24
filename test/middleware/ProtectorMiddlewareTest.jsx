@@ -16,7 +16,7 @@
 import assert from 'assert';
 import Utils from '../Utils';
 
-import { protectorMiddleware } from '../../index';
+import { protectorMiddleware } from '@twist/core';
 
 describe('Protector Middleware', () => {
 

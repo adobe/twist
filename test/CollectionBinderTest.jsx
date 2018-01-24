@@ -13,7 +13,7 @@
 
 /* global describe it */
 
-import { CollectionBinder, TaskQueue, ObservableArray, ObservableSet, ObservableMap } from '../../index';
+import { CollectionBinder, TaskQueue, ObservableArray, ObservableSet, ObservableMap } from '@twist/core';
 import assert from 'assert';
 
 describe('Bindings.CollectionBinder', () => {

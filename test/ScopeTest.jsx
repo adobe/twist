@@ -13,7 +13,7 @@
 
 /* global describe it */
 
-import { Scope } from '../index';
+import { Scope } from '@twist/core';
 import assert from 'assert';
 
 describe('JSX.Scope', () => {
