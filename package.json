@@ -11,7 +11,7 @@
     "test": "karma start --browsers Firefox --single-run",
     "linter": "eslint --ext .js,.jsx .",
     "linter:fix": "eslint --ext .js,.jsx . --fix",
-    "docs:toc": "doctoc docs",
+    "docs:toc": "doctoc docs/fundamentals docs/getting-started docs/guides docs/reference",
     "docs:api": "esdoc",
     "preversion": "npm run linter && npm run test",
     "postversion": "git push && git push --tags"
