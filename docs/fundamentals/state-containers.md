@@ -323,3 +323,113 @@ b2.dispatch('SET', a);
 ```
 
 There are many good reasons for requiring the structure of your store hierarchy to strictly be a _tree_. The most obvious reasons are (a) it leads to a lot of confusing cases, like actions being handled multiple times by the same store, and not knowing which top-level store to pass actions through, and (b) links aren't preserved when you serialize to/from JSON.
+
+## Pitfalls
+
+While Twist makes it easy to persist stores, through having `toJSON()` and `fromJSON()` methods, it's easy to run into pitfalls due to persistence having side effects.
+
+### #1: Overloading the constructor/initialization
+
+If you want a store to load its data from local storage, the following might seem like a good idea:
+
+```js
+@Store
+class MyStore() {
+    @State.byVal data;
+
+    constructor(initialState) {
+        // You really don't want to do this:
+        super(JSON.parse(localStorage.getItem('myData')));
+    }
+}
+```
+
+However, this is bad (other than the lack of try/catch) for two reasons:
+
+1. It won't work if `MyStore` is nested inside another store, due to the way `@State.byRef` works - it first creates a new `MyStore` and then calls `fromJSON()` to initialize it. So your initial data will be overriden by whatever you passed into the main store.
+
+2. Even if it _did_ work, it would violate the principle of "determinism" - all actions should be deterministic, so that you can replay/debug them. If they're not deterministic, you'll get a different answer each time you run it (or if you run it in different contexts), which makes it really hard to debug. It's the same reason why reducers in redux must be pure functions.
+
+Instead, there are two "correct" ways to initialize your store from local storage data:
+
+* You can pass this in, in the top-level JSON for your main store (i.e. when you call `this.scope.store = new MainStore(INIT_DATA)`. This is deterministic, because the INIT action is self-contained - you've already read the data from local storage before initializing the store with it.
+
+* You might not like the first approach, because the top-level app needs to know where to load the data from. So, a good alternative is to define a `LOAD` action on the store, like so:
+
+```js
+@Store
+class MyStore() {
+    @State.byVal data;
+
+    @Action _LOAD(data) {
+        try {
+            this.fromJSON(JSON.parse(data));
+        }
+        catch(e) {
+            console.error('Invalid data - aborted load', e);
+        }
+    }
+
+    @Action({ async: true }) LOAD_FROM_STORAGE() {
+        this.dispatch('_LOAD', localStorage.getItem('myData'));
+    }
+}
+```
+
+Now, in the initialization code for the store, you'll do something like:
+
+```
+this.scope.store = new MainStore(INITIAL_DATA);
+this.scope.store.settings.dispatch('LOAD_FROM_STORAGE');
+```
+
+Note that since `LOAD_FROM_STORAGE` is asynchronous, you need to dispatch it directly on the store in question.
+
+### #2. Non-deterministic actions, and actions with side effects
+
+You might be wondering why the above example has two actions, rather than just one. It's again because of the principle that _actions should be deterministic_. Think about what would happen if you just wrote:
+
+```js
+@Store
+class MyStore() {
+    @State.byVal data;
+
+    @Action LOAD_FROM_STORAGE() {
+        try {
+            this.fromJSON(JSON.parse(localStorage.getItem('myData')));
+        }
+        catch(e) {
+            console.error('Invalid data - aborted load', e);
+        }
+    }
+}
+```
+
+When you run this through redux devtools, you'll just see a single action "LOAD_FROM_STORAGE" in the logs. But if you were to undo, and then replay this action again, you'd get a different answer because local storage might have changed.
+
+For this reason, you always want to separate anything that's non-deterministic, or has side effects, into an _asynchronous_ action, and keep the actions deterministic.
+
+The same thing applies when you save the store to local storage:
+
+```js
+@Action SET_DATA(value) {
+    this.data = value;
+    // Don't do this inside a synchronous action:
+    localStorage.setItem('myData', value);
+}
+```
+
+Here, the action is deterministic, but it has _side effects_ (saving to local storage). This will work fine with redux-devtools, because of the determinism, but it'll still cause you trouble if you undo/replay actions while debugging, because this will change the local storage as well. That could lead to you scratching your head... so just keep life simple, and restrict the side effects of actions to the store and its children.
+
+As before, if we split it into a synchronous/asynchronous action pair, all is good:
+
+```js
+@Action _SET_DATA(value) {
+    this.data = value;
+}
+
+@Action({ async: true }) SET_DATA(value) {
+    this.dispatch('_SET_DATA', value);
+    localStorage.setItem('myData', value);
+}
+```

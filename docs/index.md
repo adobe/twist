@@ -12,10 +12,6 @@
   * [Components](./fundamentals/components.md)
   * [State Management](./fundamentals/state-management.md)
   * [State Containers](./fundamentals/state-containers.md)
-* Guides
-  * [Integrating with Redux DevTools](./guides/integrating-with-redux-devtools.md)
-  * [Mutability](./guides/mutability.md)
-  * [Asynchronous Actions](./guides/asynchronous-actions.md)
 * Reference
   * Core
     * [`AbstractComponent`](./reference/core/AbstractComponent.md) (abstract; no implementation)
@@ -51,6 +47,7 @@
   * JSX
     * Attributes
       * [as](./reference/jsx/attributes/as.md)
+      * [bind](./reference/jsx/attributes/bind.md)
       * [ref](./reference/jsx/attributes/ref.md)
       * [style](./reference/jsx/attributes/style.md)
       * [class](./reference/jsx/attributes/class.md)
