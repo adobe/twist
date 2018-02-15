@@ -108,7 +108,7 @@ By default, dispatched actions get propagated to all sub-stores of the store you
 Hooking up a store (your model) to the view-layer of your application is easy. The top-level component (e.g. the main entry point for your application) creates a new store, and make it accessible to the rest of the application. If you're using React-Twist, you can do this using _scope_, as the following simple example illustrates:
 
 ```javascript
-@Component({ fork: true })
+@Component
 class MyMainView {
 
     constructor() {
@@ -263,7 +263,7 @@ So far, we've described Twist from the perspective of an application, where you 
 If we continue with our example of the `User` store, let's imagine that we have a shared component that needs information about the logged-in user. If we already have a `User` store in our main store, then it doesn't make sense for the shared component to create another - there would be duplicate effort in populating the store (e.g. via extra network calls), and we'd have two user stores that could get out of sync with one another. So, let's pass in the store to the component:
 
 ```javascript
-@Component({fork: true})
+@Component
 class UserProfileView {
 
     @Attribute userStore;

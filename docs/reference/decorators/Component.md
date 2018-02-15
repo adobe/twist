@@ -16,17 +16,15 @@ Usage:
 
 ```jsx
 @Component({
-    fork: boolean = false,
-    events: Array[string] = [],
-    throttleUpdates: boolean = true;
+    fork: boolean = true,
+    events: Array[string] = [];
 })
 class MyComponent {
 }
 ```
 
 The decorator takes an object with its options, which are:
-* **fork** A Boolean signifying whether or not to fork the scope when an instance of the component is created (default is false). See [Scope](../core/Scope.md) for more detail about scope.
+* **fork** A Boolean signifying whether or not to fork the scope when an instance of the component is created (default is true). See [Scope](../core/Scope.md) for more detail about scope.
 * **events** An array of strings, defining the names of the events that the component can trigger. You can trigger an event by calling `this.trigger(eventName)` inside of the component. Events are bound to by `on<EventName>` attributes.
-* **throttleUpdates** A boolean indicating whether or not updates should be throttled. While throttling updates can be beneficial for performance and is enabled by default, you may need more control over when updates occur. To disable throttling, pass `false`.
 
 > **NOTE**: `Component` extends [`SignalDispatcher`](../core/SignalDispatcher.md) and [`Disposable`](../core/Disposable.md), so it inherits all of their methods. The `SignalDispatcher` APIs in particular are used for triggering and listening to events, and setting up programmatic watches.

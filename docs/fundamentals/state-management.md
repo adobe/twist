@@ -39,7 +39,7 @@ In Twist, a **scope** is an object that's shared by a component and all of its c
 Let's take a look at an example, using scopes to share an instance of `UserData` throughout an application:
 
 ```javascript
-@Component({fork: true})
+@Component
 class MyContainer {
     constructor() {
         super();
@@ -59,9 +59,9 @@ class MyComponent {
 }
 ```
 
-Here, `MyComponent` has direct access to `userData` because it was placed on the scope by its parent component - in both components, `this.scope` is the same object. 
+Here, `MyComponent` has direct access to `userData` because it was placed on the scope by its parent component - in both components, `this.scope` is the same object.
 
-Scopes in Twist are inherited prototypically, so when you fork a scope, it means you still have _read_ access to anything on the scope in the context where your component is used. But anything you _write_ to the scope won't be visible outside of your component and its children. Also, when the component is disposed, its forked scope will be disposed at the same time - there's no need for you to manually clean it up. As a rule of thumb, if you're adding anything to the scope, you should be forking it!
+Scopes in Twist are inherited prototypically, and are _forked_ by default. This means that you can _read_ anything that's added to the scope by a parent component (i.e. based on the context of where your component is used), but anything you _write_ to the scope won't be visible outside of your component and its children. When a component is disposed, its forked scope will be disposed at the same time - there's no need for you to manually clean it up. You can turn off forking, by writing `@Component({ fork: false })`, but this is usually bad practice, because it breaks encapsulation.
 
 One subtlety to bear in mind, is if you add an object to the scope (or anywhere else on the component) that holds resources that need to be cleaned up later. In this case, you need to dispose it when the component is disposed. Twist provides an easy shortcut for this, by using the `link` method on a component. You can write:
 
