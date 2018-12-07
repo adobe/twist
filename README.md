@@ -1,6 +1,6 @@
 # Twist: Reactive State-Management for JavaScript Applications
 
-[![Build Status](https://travis-ci.org/adobe/twist.svg?branch=master)](https://travis-ci.org/adobe/twist)
+[![Build Status](https://travis-ci.org/adobe/twist.svg?branch=master)](https://travis-ci.org/adobe/twist) [![Greenkeeper badge](https://badges.greenkeeper.io/adobe/twist.svg)](https://greenkeeper.io/)
 
 A web application is a lot like an iceberg - what you see on the surface is just a tiny fraction of the complexity that lies beneath the waves. To a casual observer, it's easy to get absorbed by beautiful designs, and be amazed by how a little CSS and JavaScript can give rise to such immersive experiences. But the more complex an application becomes, the more critically it depends on a solid foundation - the nuts and bolts of component hierarchies, state management, and caching layers that hold the whole thing together.
 
